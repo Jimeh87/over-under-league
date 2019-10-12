@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/overunderleague",
+            "outputPath": "dist",
             "index": "src/main/angular/index.html",
             "main": "src/main/angular/main.ts",
             "polyfills": "src/main/angular/polyfills.ts",
