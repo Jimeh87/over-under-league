@@ -55,9 +55,10 @@ public class OverUnderTeamPaceService {
 		return new OverUnderTeamPaceDto()
 				.setTeamId(teamStanding.getTeamId())
 				.setTeamNickname(teamStanding.getTeamSitesOnly().getTeamNickname())
+				.setWinOverUnder(winOverUnder)
 				.setWins(teamStanding.getWin())
 				.setLoses(teamStanding.getLoss())
-				.setWinOverUnder(winOverUnder)
+				.setWinPercentage(teamStanding.getWinPct())
 				.setPace(calculatePace(teamStanding, winOverUnder));
 	}
 

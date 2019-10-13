@@ -5,7 +5,12 @@
        style="width: 100%">
     <ng-container matColumnDef="team">
         <th mat-header-cell *matHeaderCellDef mat-sort-header="teamNickname">Team</th>
-        <td mat-cell *matCellDef="let teamStanding">{{teamStanding.teamNickname + ' (' + teamStanding.wins + '/' + teamStanding.loses + ')'}}</td>
+        <td mat-cell *matCellDef="let teamStanding">{{teamStanding.teamNickname}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="winLose">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="winPercentage">W / L</th>
+        <td mat-cell *matCellDef="let teamStanding">{{teamStanding.wins + ' / ' + teamStanding.loses}}</td>
     </ng-container>
 
     <ng-container matColumnDef="overunder">

@@ -22,7 +22,7 @@ import {MatSortModule} from "@angular/material/sort";
         HttpClientModule,
         BrowserAnimationsModule,
         MatTableModule,
-        MatSortModule
+        MatSortModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

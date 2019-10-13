@@ -12,7 +12,7 @@ export class OverUnderTableComponent implements OnInit {
     @Input()
     teamStandings: TeamStanding[];
 
-    columns = ['team', 'overunder', 'pace'];
+    columns = ['team', 'winLose', 'overunder', 'pace'];
 
     constructor() {
     }

@@ -12,6 +12,7 @@ public class OverUnderTeamPaceDto {
 	private String teamNickname;
 	private BigDecimal winOverUnder;
 	private Integer wins;
+	private BigDecimal winPercentage;
 	private Integer loses;
 	private Integer pace;
 }
