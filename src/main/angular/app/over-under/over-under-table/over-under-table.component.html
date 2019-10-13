@@ -1,0 +1,27 @@
+<table *ngIf="teamStandings"
+       mat-table [dataSource]="teamStandings"
+       matSort (matSortChange)="sortData($event)" matSortActive="pace" matSortDirection="desc" matSortDisableClear
+       class="mat-elevation-z8"
+       style="width: 100%">
+    <ng-container matColumnDef="team">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="teamNickname">Team</th>
+        <td mat-cell *matCellDef="let teamStanding">{{teamStanding.teamNickname + ' (' + teamStanding.wins + '/' + teamStanding.loses + ')'}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="overunder">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="winOverUnder">Over/Under</th>
+        <td mat-cell *matCellDef="let teamStanding">{{+teamStanding.winOverUnder}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="pace">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="pace">Pace</th>
+        <td mat-cell
+            *matCellDef="let teamStanding"
+            [ngClass]="{'positive-number': teamStanding.pace > 0, 'negative-number': teamStanding.pace < 0, 'neutral-number': teamStanding == 0}">
+            {{+teamStanding.pace}}
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns"></tr>
+</table>
