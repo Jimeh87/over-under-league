@@ -97,7 +97,8 @@ class PaceCalculatorTest {
 			"20,20,57.5,-8",
 			"60,11,51.5,15",
 			"4,2,34.5,1",
-			"0,15,30,-5"
+			"0,15,30,-5",
+			"15,0,40.5,8"
 	})
 	void testSamples(int wins, int loses, double overunder, int expectedPace) {
 		int pace = PaceCalculator.builder()
