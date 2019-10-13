@@ -5,6 +5,11 @@ import {OverUnderComponent} from "./over-under/over-under.component";
 
 const routes: Routes = [
   {
+    path: '',
+    component: OverUnderComponent,
+    pathMatch: 'full'
+  },
+  {
     path: 'over-under',
     component: OverUnderComponent
   }
