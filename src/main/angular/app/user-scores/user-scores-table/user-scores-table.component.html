@@ -1,14 +1,13 @@
 <table *ngIf="userStandings"
        mat-table [dataSource]="userStandings" multiTemplateDataRows
-       matSort (matSortChange)="sortData($event)" matSortActive="score" matSortDirection="desc" matSortDisableClear
        style="width: 100%">
     <ng-container matColumnDef="user">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="userNickname">User</th>
+        <th mat-header-cell *matHeaderCellDef>User</th>
         <td mat-cell *matCellDef="let userStanding">{{userStanding.userNickname}}</td>
     </ng-container>
 
     <ng-container matColumnDef="score">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="score">Points</th>
+        <th mat-header-cell *matHeaderCellDef>Points</th>
         <td mat-cell
             *matCellDef="let userStanding"
             [ngClass]="{'positive-number': userStanding.score > 0, 'negative-number': userStanding.score < 0, 'neutral-number': userStanding.score == 0}">

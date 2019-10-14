@@ -1,6 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {UserStanding} from "../../service/user-standing.interface";
-import {Sort} from "@angular/material/sort";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {MatIconRegistry} from "@angular/material/icon";
 import {DomSanitizer} from "@angular/platform-browser";
@@ -17,7 +16,7 @@ import {DomSanitizer} from "@angular/platform-browser";
     ]),
   ]
 })
-export class UserScoresTableComponent implements OnInit {
+export class UserScoresTableComponent {
 
   @Input()
   userStandings: UserStanding[];
@@ -35,24 +34,4 @@ export class UserScoresTableComponent implements OnInit {
         sanitizer.bypassSecurityTrustResourceUrl('assets/keyboard_arrow_up-24px.svg'));
   }
 
-
-  ngOnInit() {
-  }
-
-
-  sortData(sort: Sort) {
-    const data = this.userStandings.slice();
-    if (!sort.active || sort.direction === '') {
-      this.userStandings = data;
-      return;
-    }
-
-    this.userStandings = data.sort((a, b) => {
-      return this.compare(a[sort.active], b[sort.active], sort.direction === 'asc');
-    });
-  }
-
-  compare(a: number | string, b: number | string, asc: boolean) {
-    return (a < b ? -1 : 1) * (asc ? 1 : -1);
-  }
 }
