@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {TeamStanding} from "../service/team-standing.interface";
 import {map} from "rxjs/operators";

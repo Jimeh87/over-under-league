@@ -1,7 +1,6 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {OverUnderComponent} from "./over-under/over-under.component";
-import {AppComponent} from "./app.component";
 import {UserScoresComponent} from "./user-scores/user-scores.component";
 
 
