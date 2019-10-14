@@ -19,7 +19,7 @@
     <ng-container matColumnDef="showDetailButton">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let userStanding" style="text-align: right">
-            <button mat-flat-button (click)="expandedRow = expandedRow === userStanding ? null : userStanding">
+            <button mat-button color="primary" (click)="expandedRow = expandedRow === userStanding ? null : userStanding">
                 Teams <mat-icon [svgIcon]="expandedRow === userStanding ? 'arrow-up' : 'arrow-down'"></mat-icon>
             </button>
         </td>

@@ -12,8 +12,8 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$overunderleague-primary: mat-palette($mat-indigo);
-$overunderleague-accent: mat-palette($mat-pink, A200, A100, A400);
+$overunderleague-primary: mat-palette($mat-blue-grey);
+$overunderleague-accent: mat-palette($mat-grey, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
 $overunderleague-warn: mat-palette($mat-red);
