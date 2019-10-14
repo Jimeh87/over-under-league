@@ -7,12 +7,12 @@ import java.math.BigDecimal;
 
 @Data
 @Accessors(chain = true)
-public class OverUnderTeamPaceDto {
+public class UserTeamScoreDto {
 	private String teamId;
 	private String teamNickname;
 	private BigDecimal winOverUnder;
 	private Integer wins;
 	private Integer loses;
-	private BigDecimal winPercentage;
-	private Integer pace;
+	private WagerType wager;
+	private Integer score;
 }

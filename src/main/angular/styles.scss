@@ -30,3 +30,15 @@ $overunderleague-theme: mat-light-theme($overunderleague-primary, $overunderleag
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.positive-number {
+  color: green;
+}
+
+.negative-number {
+  color: red;
+}
+
+.neutral-number {
+  color: inherit;
+}

@@ -1,7 +1,6 @@
 <table *ngIf="teamStandings"
        mat-table [dataSource]="teamStandings"
        matSort (matSortChange)="sortData($event)" matSortActive="pace" matSortDirection="desc" matSortDisableClear
-       class="mat-elevation-z8"
        style="width: 100%">
     <ng-container matColumnDef="team">
         <th mat-header-cell *matHeaderCellDef mat-sort-header="teamNickname">Team</th>
@@ -22,7 +21,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header="pace">Pace</th>
         <td mat-cell
             *matCellDef="let teamStanding"
-            [ngClass]="{'positive-number': teamStanding.pace > 0, 'negative-number': teamStanding.pace < 0, 'neutral-number': teamStanding == 0}">
+            [ngClass]="{'positive-number': teamStanding.pace > 0, 'negative-number': teamStanding.pace < 0, 'neutral-number': teamStanding.pace == 0}">
             {{+teamStanding.pace}}
         </td>
     </ng-container>

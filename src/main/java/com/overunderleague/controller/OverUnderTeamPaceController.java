@@ -17,7 +17,7 @@ public class OverUnderTeamPaceController {
 	private OverUnderTeamPaceService overUnderTeamPaceService;
 
 	@GetMapping
-	List<OverUnderTeamPaceDto> list() {
+	public List<OverUnderTeamPaceDto> list() {
 		return overUnderTeamPaceService.list();
 	}
 }

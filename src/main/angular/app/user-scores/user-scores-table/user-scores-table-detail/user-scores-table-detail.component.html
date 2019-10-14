@@ -1,0 +1,37 @@
+<table *ngIf="teamScores"
+       mat-table [dataSource]="teamScores"
+       class="mat-elevation-z8"
+       style="width: 100%">
+
+    <ng-container matColumnDef="team">
+        <th mat-header-cell *matHeaderCellDef>Team</th>
+        <td mat-cell *matCellDef="let teamScore">{{teamScore.teamNickname}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="winLose">
+        <th mat-header-cell *matHeaderCellDef>W / L</th>
+        <td mat-cell *matCellDef="let teamScore">{{teamScore.wins + ' / ' + teamScore.loses}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="overunder">
+        <th mat-header-cell *matHeaderCellDef>Over/Under</th>
+        <td mat-cell *matCellDef="let teamScore">{{+teamScore.winOverUnder}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="wager">
+        <th mat-header-cell *matHeaderCellDef>Wager</th>
+        <td mat-cell *matCellDef="let teamScore">{{ teamScore.wager | titlecase }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="points">
+        <th mat-header-cell *matHeaderCellDef>Points</th>
+        <td mat-cell
+            *matCellDef="let teamScore"
+            [ngClass]="{'positive-number': teamScore.score > 0, 'negative-number': teamScore.score < 0, 'neutral-number': teamScore.score == 0}">
+            {{+teamScore.score}}
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns"></tr>
+</table>

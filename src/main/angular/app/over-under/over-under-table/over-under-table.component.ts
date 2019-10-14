@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {TeamStanding} from "../../service/team-standing.interface";
 import {Sort} from "@angular/material/sort";
+import {UserStanding} from "../../service/user-standing.interface";
 
 @Component({
     selector: 'app-over-under-table',
