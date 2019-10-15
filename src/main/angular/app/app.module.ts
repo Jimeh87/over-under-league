@@ -5,7 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatTableModule} from "@angular/material/table";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {OverUnderComponent} from './over-under/over-under.component';
 import {OverUnderTableComponent} from './over-under/over-under-table/over-under-table.component';
 import {MatSortModule} from "@angular/material/sort";
@@ -17,6 +17,10 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {ErrorSnackComponent} from './error-snack/error-snack.component';
+import {HttpErrorInterceptor} from "./HttpErrorInterceptor.interceptor";
+import {CopyClipboardDirective} from './copy-clipboard.directive';
 
 @NgModule({
     declarations: [
@@ -25,7 +29,9 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
         OverUnderTableComponent,
         UserScoresComponent,
         UserScoresTableComponent,
-        UserScoresTableDetailComponent
+        UserScoresTableDetailComponent,
+        ErrorSnackComponent,
+        CopyClipboardDirective
     ],
     imports: [
         BrowserModule,
@@ -38,9 +44,19 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
         MatIconModule,
         MatTabsModule,
         MatToolbarModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatSnackBarModule
     ],
-    providers: [],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpErrorInterceptor,
+            multi: true
+        }
+    ],
+    entryComponents: [
+        ErrorSnackComponent
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
