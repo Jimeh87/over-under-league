@@ -16,6 +16,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
     declarations: [
@@ -36,7 +37,8 @@ import {MatToolbarModule} from "@angular/material/toolbar";
         MatButtonModule,
         MatIconModule,
         MatTabsModule,
-        MatToolbarModule
+        MatToolbarModule,
+        MatProgressSpinnerModule
     ],
     providers: [],
     bootstrap: [AppComponent]
