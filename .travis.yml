@@ -2,18 +2,18 @@ language: java
 jdk:
 - oraclejdk12
 deploy:
-  skip_cleanup: true
-  provider: heroku
-  api_key:
-    secure: iZvpQAGnUCf7LTilatvsRmahByOVYbvvcEfGsQwJ4iv2uzI+6JXVDh+sGBhEMb33BbrUHPeFTZ7j//ekYJm9XhM8eGdxBjzJXOcVqyXvVoETGliNYQeqQ4nfr/bzUL741pRPD+yTvw+QZjlK9lHr+zzh0nEqAxggib/uvjzqQmhIMW5MMUbxlJIcBrQU5yfwy2cCoDaAMiuJkPom9FRnWRzm37/JQyQI2LPzRidqw4QwcYLuFv+No59BZt/nSH27uVsMRusm+9j4uaKyHWOfzgnCuD8KCYpGQVKi8BIlilU83mcOhCOEfgs6A8uXL1Ad5YABXa/3k4k09gSuPA/9Pt7gzAv55yTrocT3I+7b3MrHAOJd/p84Xww1rsAsvHI2Ime6q89L9elK5IuhtG1l2QOlnShuKLWQlJ617Zhi37OtWceN/sRpNxn691oPEmWdTUnnB1NZNoYBOF06V30edQo2ITULeSEv99JbB1GSjDSqIiSYHoLG7zGqWegBXLUYA9vLhF2J6M1BKgu7Y8AgH46dbGB6nfKOMFCLXqwR7YS9ndJNWgsNQG4TG67LYqf2OsM3/XSvKmPv2L7HK2XU8AaL6Kq26VJQMNJoow7IGczOSHrH3ElkLcQaX4SwjwOuc7FZV9zcxoOpC1rAqGfH4MW7MftDKp0pz/W0TtirykI=
-  app: overunderleague
-  on:
-    repo: Jimeh87/over-under-league
-
-#deploy:
-#  provider: script
-#  script: bash scripts/deploy.sh
-#  on:
-#    repo: Jimeh87/over-under-league
+  - provider: heroku
+    skip_cleanup: true
+    api_key:
+      secure: iZvpQAGnUCf7LTilatvsRmahByOVYbvvcEfGsQwJ4iv2uzI+6JXVDh+sGBhEMb33BbrUHPeFTZ7j//ekYJm9XhM8eGdxBjzJXOcVqyXvVoETGliNYQeqQ4nfr/bzUL741pRPD+yTvw+QZjlK9lHr+zzh0nEqAxggib/uvjzqQmhIMW5MMUbxlJIcBrQU5yfwy2cCoDaAMiuJkPom9FRnWRzm37/JQyQI2LPzRidqw4QwcYLuFv+No59BZt/nSH27uVsMRusm+9j4uaKyHWOfzgnCuD8KCYpGQVKi8BIlilU83mcOhCOEfgs6A8uXL1Ad5YABXa/3k4k09gSuPA/9Pt7gzAv55yTrocT3I+7b3MrHAOJd/p84Xww1rsAsvHI2Ime6q89L9elK5IuhtG1l2QOlnShuKLWQlJ617Zhi37OtWceN/sRpNxn691oPEmWdTUnnB1NZNoYBOF06V30edQo2ITULeSEv99JbB1GSjDSqIiSYHoLG7zGqWegBXLUYA9vLhF2J6M1BKgu7Y8AgH46dbGB6nfKOMFCLXqwR7YS9ndJNWgsNQG4TG67LYqf2OsM3/XSvKmPv2L7HK2XU8AaL6Kq26VJQMNJoow7IGczOSHrH3ElkLcQaX4SwjwOuc7FZV9zcxoOpC1rAqGfH4MW7MftDKp0pz/W0TtirykI=
+    app: overunderleague
+    on:
+      repo: Jimeh87/over-under-league
+      branch: dev
+  - provider: script
+    script: bash scripts/deploy.sh
+    on:
+      repo: Jimeh87/over-under-league
+      branch: master
 
 
