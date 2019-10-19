@@ -10,7 +10,7 @@ eval "$(ssh-agent -s)"
 chmod 600 ./prod_deploy_key
 echo -e "Host $PROD_SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 ssh-add ./prod_deploy_key
-scp -i ./prod_deploy_key "${TRAVIS_BUILD_DIR}/over-under-league.jar" "${PROD_USER}@${PROD_SERVER_IP_ADDRESS}"
+scp -i ./prod_deploy_key "${TRAVIS_BUILD_DIR}/target/over-under-league.jar" "${PROD_USER}@${PROD_SERVER_IP_ADDRESS}"
 ssh -i ./prod_deploy_key "${PROD_USER}@${PROD_SERVER_IP_ADDRESS}" pwd
 
 tar -czvf over-under-league.tar.gz "${TRAVIS_BUILD_DIR}/target/over-under-league.jar"
