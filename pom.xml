@@ -10,10 +10,10 @@
 	</parent>
 	<groupId>com.overunderleague</groupId>
 	<artifactId>overunderleague</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 	<name>service</name>
-	<description>Over/under service layer</description>
+	<description>Over/under league service</description>
 
 	<properties>
 		<java.version>12</java.version>
