@@ -1,0 +1,4 @@
+add appadmin group to deploy user
+
+setup sudoers
+%appadmin ALL=(ALL) NOPASSWD:/bin/systemctl restart over-under-league

@@ -11,6 +11,6 @@ echo -e "Host $PROD_SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/c
 ssh-add ./prod_deploy_key
 tar -czvf over-under-league.tar.gz -C "${TRAVIS_BUILD_DIR}/target" over-under-league.jar
 scp -i ./prod_deploy_key over-under-league.tar.gz "${PROD_USER}@${PROD_SERVER_IP_ADDRESS}:"
-ssh -i ./prod_deploy_key "${PROD_USER}@${PROD_SERVER_IP_ADDRESS}" 'tar -xvf over-under-league.tar.gz -C /srv/over-under-league/'
+ssh -i ./prod_deploy_key "${PROD_USER}@${PROD_SERVER_IP_ADDRESS}" 'tar -xvf over-under-league.tar.gz -C /srv/over-under-league/ && sudo /bin/systemctl restart over-under-league'
 
 echo "Deploy complete!"
