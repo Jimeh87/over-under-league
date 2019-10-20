@@ -36,9 +36,13 @@ public class ReportController {
 
 		for (UserScoreDto user : users) {
 			sb.append(user.getUserNickname()).append(":").append(NEW_LINE);
-			for (UserTeamScoreDto team : user.getTeamScores()) {
+			for (UserTeamScoreDto team : user.getTeamScores().stream().sorted(comparing(UserTeamScoreDto::getTeamNickname)).collect(toList())) {
 				sb.append(TAB)
-						.append(team.getTeamNickname()).append("(").append(team.getWinOverUnder()).append(")").append(" - ").append(team.getWager()).append(NEW_LINE);
+						.append(team.getTeamNickname())
+						.append("(").append(team.getWinOverUnder()).append(")")
+						.append(" - ")
+						.append(team.getWager())
+						.append(NEW_LINE);
 			}
 		}
 
