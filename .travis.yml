@@ -8,10 +8,10 @@ deploy:
   app: overunderleague
   on:
     repo: Jimeh87/over-under-league
-    branch: dev
+    branch: master
 - provider: script
   skip_cleanup: true
   script: bash scripts/deploy.sh
   on:
     repo: Jimeh87/over-under-league
-    branch: master
+    branch: dev
