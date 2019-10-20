@@ -22,7 +22,7 @@
         <td mat-cell
             *matCellDef="let teamStanding"
             [ngClass]="{'positive-number': teamStanding.pace > 0, 'negative-number': teamStanding.pace < 0, 'neutral-number': teamStanding.pace == 0}">
-            {{+teamStanding.pace}}
+            {{+teamStanding.pace | wholeNumber}}
         </td>
     </ng-container>
 

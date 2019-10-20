@@ -23,6 +23,7 @@ import {HttpErrorInterceptor} from "./HttpErrorInterceptor.interceptor";
 import {CopyClipboardDirective} from './copy-clipboard.directive';
 import {FooterComponent} from './footer/footer.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
+import { WholeNumberPipe } from './pipe/whole-number.pipe';
 
 @NgModule({
     declarations: [
@@ -34,7 +35,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
         UserScoresTableDetailComponent,
         ErrorSnackComponent,
         CopyClipboardDirective,
-        FooterComponent
+        FooterComponent,
+        WholeNumberPipe
     ],
     imports: [
         BrowserModule,

@@ -11,7 +11,7 @@
         <td mat-cell
             *matCellDef="let userStanding"
             [ngClass]="{'positive-number': userStanding.score > 0, 'negative-number': userStanding.score < 0, 'neutral-number': userStanding.score == 0}">
-            {{+userStanding.score}}
+            {{+userStanding.score | wholeNumber}}
         </td>
     </ng-container>
 
