@@ -16,17 +16,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         return next.handle(request)
             .pipe(
                 catchError((error: HttpErrorResponse) => {
-                    let errorMessage = '';
-                    if (error.error instanceof ErrorEvent) {
-                        // client-side error
-                        errorMessage = `Error: ${error.error.message}`;
-                    } else {
-                        // server-side error
-                        errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-                    }
-
                     this.snackBar.openFromComponent(ErrorSnackComponent, {duration: 30000, data: error, horizontalPosition: "center", verticalPosition: "top"});
-                    return throwError(errorMessage);
+                    return throwError(error);
                 })
             )
     }

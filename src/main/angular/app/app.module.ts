@@ -21,6 +21,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {ErrorSnackComponent} from './error-snack/error-snack.component';
 import {HttpErrorInterceptor} from "./HttpErrorInterceptor.interceptor";
 import {CopyClipboardDirective} from './copy-clipboard.directive';
+import {FooterComponent} from './footer/footer.component';
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
     declarations: [
@@ -31,7 +33,8 @@ import {CopyClipboardDirective} from './copy-clipboard.directive';
         UserScoresTableComponent,
         UserScoresTableDetailComponent,
         ErrorSnackComponent,
-        CopyClipboardDirective
+        CopyClipboardDirective,
+        FooterComponent
     ],
     imports: [
         BrowserModule,
@@ -45,7 +48,8 @@ import {CopyClipboardDirective} from './copy-clipboard.directive';
         MatTabsModule,
         MatToolbarModule,
         MatProgressSpinnerModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatTooltipModule
     ],
     providers: [
         {
