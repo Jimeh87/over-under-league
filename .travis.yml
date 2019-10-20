@@ -14,4 +14,4 @@ deploy:
   script: bash scripts/deploy.sh
   on:
     repo: Jimeh87/over-under-league
-    branch: dev
+    branch: master
