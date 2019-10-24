@@ -11,7 +11,7 @@ export class UserScoresTableDetailComponent implements OnInit {
   @Input()
   teamScores: TeamScore[];
 
-  columns = ['team', 'winLose', 'wager', 'points'];
+  columns = ['team', 'winLose', 'overunder', 'wager', 'points'];
 
   ngOnInit() {
   }
