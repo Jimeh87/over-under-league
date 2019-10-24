@@ -98,9 +98,33 @@ class PaceCalculatorTest {
 			"60,11,51.5,15",
 			"4,2,34.5,1",
 			"0,15,30,-5",
-			"15,0,40.5,8"
+			"15,0,40.5,8",
+			"42,40,41.5,1",
+			"41,41,41.5,-1"
 	})
 	void testSamples(int wins, int loses, double overunder, int expectedPace) {
+		int pace = PaceCalculator.builder()
+				.wins(wins)
+				.loses(loses)
+				.overUnder(overunder)
+				.build()
+				.calculate();
+
+		assertEquals(expectedPace, pace, "expected pace");
+	}
+
+	@ParameterizedTest(name = "wins: {0} loses: {1} overunder: {2} expected pace: {3}")
+	@CsvSource({
+			"0,1,41.5,-1",
+			"0,1,41, 0",
+			"1,0,41, 1",
+			"1,0,40.5,1",
+			"1,0,35.5,1",
+			"0,1,33.5,0",
+			"1,0,46.5,0",
+			"0,1,51.5,-1"
+	})
+	void testEarlySeasonSamples(int wins, int loses, double overunder, int expectedPace) {
 		int pace = PaceCalculator.builder()
 				.wins(wins)
 				.loses(loses)
