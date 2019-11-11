@@ -1,7 +1,5 @@
 import {Component, Inject} from '@angular/core';
 import {HttpErrorResponse} from "@angular/common/http";
-import {MatIconRegistry} from "@angular/material/icon";
-import {DomSanitizer} from "@angular/platform-browser";
 import {MAT_SNACK_BAR_DATA} from "@angular/material/snack-bar";
 
 @Component({
@@ -14,14 +12,8 @@ export class ErrorSnackComponent {
   error: HttpErrorResponse;
   errorCopied = false;
 
-  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: HttpErrorResponse,
-              iconRegistry: MatIconRegistry,
-              sanitizer: DomSanitizer) {
+  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: HttpErrorResponse) {
     this.error = data;
-
-    iconRegistry.addSvgIcon(
-        'file-copy',
-        sanitizer.bypassSecurityTrustResourceUrl('assets/file_copy-24px.svg'));
   }
 
   copied() {
