@@ -3,4 +3,4 @@ Used to track standings for an over under league I'm in.
 
 ## Site
 
-[http://overunderleague.herokuapp.com](http://overunderleague.herokuapp.com)
+[https://overunderleague.com](http://overunderleague.com)
