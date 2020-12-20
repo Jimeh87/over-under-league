@@ -12,7 +12,11 @@ public class PaceCalculator {
 	private double overUnder;
 
 	public int calculate() {
-		double overUnderWinPercentage = overUnder / TOTAL_GAMES;
+		return calculate(TOTAL_GAMES);
+	}
+
+	public int calculate(int totalGames) {
+		double overUnderWinPercentage = overUnder / totalGames;
 		double currentTotalGames = wins + loses;
 		double currentWinPercentage = currentTotalGames != 0 ? wins / currentTotalGames : overUnderWinPercentage;
 

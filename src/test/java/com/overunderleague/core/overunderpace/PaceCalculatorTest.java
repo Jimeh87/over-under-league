@@ -15,7 +15,7 @@ class PaceCalculatorTest {
 				.loses(PaceCalculator.TOTAL_GAMES - 20)
 				.overUnder(20)
 				.build()
-				.calculate();
+				.calculate(82);
 
 		assertEquals(0, pace);
 	}
@@ -27,7 +27,7 @@ class PaceCalculatorTest {
 				.loses(PaceCalculator.TOTAL_GAMES - 24)
 				.overUnder(23.5)
 				.build()
-				.calculate();
+				.calculate(82);
 
 		assertEquals(1, pace);
 	}
@@ -39,7 +39,7 @@ class PaceCalculatorTest {
 				.loses(PaceCalculator.TOTAL_GAMES - 23)
 				.overUnder(23.5)
 				.build()
-				.calculate();
+				.calculate(82);
 
 		assertEquals(-1, pace);
 	}
@@ -51,7 +51,7 @@ class PaceCalculatorTest {
 				.loses(0)
 				.overUnder(10)
 				.build()
-				.calculate();
+				.calculate(82);
 
 		assertEquals(1, pace);
 	}
@@ -63,7 +63,7 @@ class PaceCalculatorTest {
 				.loses(0)
 				.overUnder(51)
 				.build()
-				.calculate();
+				.calculate(82);
 
 		assertEquals(3, pace);
 	}
@@ -75,7 +75,7 @@ class PaceCalculatorTest {
 				.loses(0)
 				.overUnder(10)
 				.build()
-				.calculate();
+				.calculate(82);
 
 		assertEquals(0, pace);
 	}
@@ -87,7 +87,7 @@ class PaceCalculatorTest {
 				.loses(0)
 				.overUnder(0)
 				.build()
-				.calculate();
+				.calculate(82);
 
 		assertEquals(10, pace);
 	}
@@ -108,7 +108,7 @@ class PaceCalculatorTest {
 				.loses(loses)
 				.overUnder(overunder)
 				.build()
-				.calculate();
+				.calculate(82);
 
 		assertEquals(expectedPace, pace, "expected pace");
 	}
@@ -130,7 +130,7 @@ class PaceCalculatorTest {
 				.loses(loses)
 				.overUnder(overunder)
 				.build()
-				.calculate();
+				.calculate(82);
 
 		assertEquals(expectedPace, pace, "expected pace");
 	}
