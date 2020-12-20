@@ -15,19 +15,20 @@ class PaceCalculatorTest {
 				.loses(PaceCalculator.TOTAL_GAMES - 20)
 				.overUnder(20)
 				.build()
-				.calculate(82);
+				.calculate();
 
 		assertEquals(0, pace);
 	}
 
 	@Test
 	void testCalculate_OneOver_ExpectOneReturned() {
+		int totalGames = 82;
 		int pace = PaceCalculator.builder()
 				.wins(24)
-				.loses(PaceCalculator.TOTAL_GAMES - 24)
+				.loses(totalGames - 24)
 				.overUnder(23.5)
 				.build()
-				.calculate(82);
+				.calculate(totalGames);
 
 		assertEquals(1, pace);
 	}
@@ -39,7 +40,7 @@ class PaceCalculatorTest {
 				.loses(PaceCalculator.TOTAL_GAMES - 23)
 				.overUnder(23.5)
 				.build()
-				.calculate(82);
+				.calculate();
 
 		assertEquals(-1, pace);
 	}
