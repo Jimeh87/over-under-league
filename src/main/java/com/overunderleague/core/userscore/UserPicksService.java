@@ -59,7 +59,7 @@ public class UserPicksService {
 					UserPickDto.of("1610612744", WagerType.UNDER),
 					UserPickDto.of("1610612760", WagerType.OVER),
 					UserPickDto.of("1610612750", WagerType.OVER),
-					UserPickDto.of("1610612739", WagerType.OVER)
+					UserPickDto.of("1610612759", WagerType.OVER)
 			),
 			UserPicksDto.of(
 					"Stu",
