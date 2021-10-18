@@ -5,11 +5,11 @@ import lombok.Builder;
 @Builder
 public class PaceCalculator {
 
-	static final int TOTAL_GAMES = 72;
+	static final int TOTAL_GAMES = 82;
 
-	private double wins;
-	private double loses;
-	private double overUnder;
+	private final double wins;
+	private final double loses;
+	private final double overUnder;
 
 	public int calculate() {
 		return calculate(TOTAL_GAMES);

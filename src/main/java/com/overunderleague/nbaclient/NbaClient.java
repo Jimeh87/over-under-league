@@ -1,6 +1,6 @@
-package com.overunderleague.client;
+package com.overunderleague.nbaclient;
 
-import com.overunderleague.client.api.StandingsDto;
+import com.overunderleague.nbaclient.api.NbaStandingsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
@@ -16,8 +16,8 @@ public class NbaClient {
 	private String standingsUrl;
 
 	@Cacheable("nbaStandings")
-	public StandingsDto findCurrentStandings() {
-		return restTemplate.getForObject(standingsUrl, StandingsDto.class);
+	public NbaStandingsDto findCurrentStandings() {
+		return restTemplate.getForObject(standingsUrl, NbaStandingsDto.class);
 	}
 
 }

@@ -1,6 +1,6 @@
 package com.overunderleague.controller;
 
-import com.overunderleague.client.NbaClient;
+import com.overunderleague.nbaclient.NbaClient;
 import com.overunderleague.controller.api.PublishDateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

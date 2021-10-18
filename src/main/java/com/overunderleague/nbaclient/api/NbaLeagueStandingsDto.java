@@ -1,4 +1,4 @@
-package com.overunderleague.client.api;
+package com.overunderleague.nbaclient.api;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -8,8 +8,8 @@ import java.util.List;
 
 @Data
 @Accessors(chain = true)
-public class LeagueStandingsDto {
+public class NbaLeagueStandingsDto {
 	private Integer seasonYear;
 	private Integer seasonStageId;
-	private List<TeamStandingDto> teams = new ArrayList<>();
+	private List<NbaTeamStandingDto> teams = new ArrayList<>();
 }

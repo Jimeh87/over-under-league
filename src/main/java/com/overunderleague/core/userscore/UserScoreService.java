@@ -1,6 +1,7 @@
 package com.overunderleague.core.userscore;
 
 import com.overunderleague.controller.api.*;
+import com.overunderleague.core.overunder.Team;
 import com.overunderleague.core.overunderpace.OverUnderTeamPaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class UserScoreService {
 	private UserPicksService userPicksService;
 
 	public List<UserScoreDto> list() {
-		Map<String, OverUnderTeamPaceDto> teamPaceByTeam = getTeamPaceByTeam();
+		Map<Team, OverUnderTeamPaceDto> teamPaceByTeam = getTeamPaceByTeam();
 
 		return userPicksService.list()
 				.stream()
@@ -32,23 +33,23 @@ public class UserScoreService {
 				.collect(toList());
 	}
 
-	private Map<String, OverUnderTeamPaceDto> getTeamPaceByTeam() {
+	private Map<Team, OverUnderTeamPaceDto> getTeamPaceByTeam() {
 		return overUnderTeamPaceService.list()
 				.stream()
-				.collect(toMap(OverUnderTeamPaceDto::getTeamId, Function.identity()));
+				.collect(toMap(OverUnderTeamPaceDto::getTeam, Function.identity()));
 	}
 
-	private List<UserTeamScoreDto> toUserTeamScores(UserPicksDto userPick, Map<String, OverUnderTeamPaceDto> teamPaceByTeam) {
+	private List<UserTeamScoreDto> toUserTeamScores(UserPicksDto userPick, Map<Team, OverUnderTeamPaceDto> teamPaceByTeam) {
 		return userPick.getUserPicks()
 				.stream()
-				.map(pick -> toUserTeamScore(pick, teamPaceByTeam.get(pick.getTeamId())))
+				.map(pick -> toUserTeamScore(pick, teamPaceByTeam.get(pick.getTeam())))
 				.sorted(reverseOrder(comparing(UserTeamScoreDto::getScore)))
 				.collect(toList());
 	}
 
 	private UserTeamScoreDto toUserTeamScore(UserPickDto pick, OverUnderTeamPaceDto teamPace) {
 		return new UserTeamScoreDto()
-				.setTeamId(pick.getTeamId())
+				.setTeam(pick.getTeam())
 				.setTeamNickname(teamPace.getTeamNickname())
 				.setWager(pick.getWagerType())
 				.setWinOverUnder(teamPace.getWinOverUnder())

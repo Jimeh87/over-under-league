@@ -1,11 +1,11 @@
-package com.overunderleague.client.api;
+package com.overunderleague.nbaclient.api;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 @Data
 @Accessors(chain = true)
-public class TeamDto {
+public class NbaTeamDto {
 	private String teamKey;
 	private String teamName;
 	private String teamCode;

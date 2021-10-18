@@ -1,4 +1,4 @@
-package com.overunderleague.client.api;
+package com.overunderleague.nbaclient.api;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -9,7 +9,7 @@ import java.util.Map;
 
 @Data
 @Accessors(chain = true)
-public class TeamStandingDto {
+public class NbaTeamStandingDto {
 	private String teamId;
 	private Integer win;
 	private Integer loss;
@@ -35,7 +35,7 @@ public class TeamStandingDto {
     private Integer streak;
     private String divRank;
     private Boolean isWinStreak;
-    private TeamDto teamSitesOnly;
+    private NbaTeamDto teamSitesOnly;
     private String tieBreakerPts;
     private Map<String, Integer> sortKey = new HashMap<>();
 }
