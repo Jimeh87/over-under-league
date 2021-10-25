@@ -21,7 +21,7 @@ public enum Team {
 	HEAT("1610612748", "Heat"),
 	HORNETS("1610612766", "Hornets"),
 	JAZZ("1610612762", "Jazz"),
-	KINGS("1610612758", "KINGS"),
+	KINGS("1610612758", "Kings"),
 	KNICKS("1610612752", "Knicks"),
 	LAKERS("1610612747", "Lakers"),
 	MAGIC("1610612753", "Magic"),
