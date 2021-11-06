@@ -8,8 +8,9 @@ import java.util.List;
 
 @Data
 @Accessors(chain = true)
-public class UserScoreDto {
+public class UserStandingDto {
 	private String userNickname;
-	private Integer score;
+	private Integer points;
+	private TeamTemperatureDto temperature;
 	private List<UserTeamScoreDto> teamScores = new ArrayList<>();
 }

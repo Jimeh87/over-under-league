@@ -1,11 +1,11 @@
 package com.overunderleague.core.overunderpace;
 
-import com.overunderleague.core.overunder.OverUnderTeamDto;
-import com.overunderleague.nbaclient.NbaClient;
-import com.overunderleague.nbaclient.api.NbaTeamStandingDto;
 import com.overunderleague.controller.api.OverUnderTeamPaceDto;
 import com.overunderleague.core.overunder.OverUnderService;
+import com.overunderleague.core.overunder.OverUnderTeamDto;
 import com.overunderleague.core.overunder.Team;
+import com.overunderleague.nbaclient.NbaClient;
+import com.overunderleague.nbaclient.api.NbaTeamStandingDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +47,8 @@ public class OverUnderTeamPaceService {
 				.setWins(teamStanding.getWin())
 				.setLoses(teamStanding.getLoss())
 				.setWinPercentage(teamStanding.getWinPct())
+				.setWinsInLastTenGames(teamStanding.getLastTenWin())
+				.setPaceInLastTenGames(calculatePaceOverLastTenGames(teamStanding, overUnderTeam.getWinOverUnder()))
 				.setPace(calculatePace(teamStanding, overUnderTeam.getWinOverUnder()));
 	}
 
@@ -54,6 +56,16 @@ public class OverUnderTeamPaceService {
 		return PaceCalculator.builder()
 				.wins(teamStanding.getWin())
 				.loses(teamStanding.getLoss())
+				.overUnder(winOverUnder.doubleValue())
+				.build()
+				.calculate();
+	}
+
+	private int calculatePaceOverLastTenGames(NbaTeamStandingDto teamStanding, BigDecimal winOverUnder) {
+		int previousNumberOfGames = Math.min(10, teamStanding.getWin() + teamStanding.getLoss());
+		return PaceCalculator.builder()
+				.wins(teamStanding.getLastTenWin())
+				.loses(previousNumberOfGames - teamStanding.getLastTenWin())
 				.overUnder(winOverUnder.doubleValue())
 				.build()
 				.calculate();

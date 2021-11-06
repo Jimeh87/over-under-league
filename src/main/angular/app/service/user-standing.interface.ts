@@ -1,6 +1,7 @@
 export interface UserStanding {
     userNickname: string;
-    score: number;
+    points: number;
+    temperature: TeamTemperature;
     teamScores: TeamScore[];
 }
 
@@ -11,5 +12,13 @@ export interface TeamScore {
     wins: number;
     loses: number;
     wager: 'OVER' | 'UNDER';
-    score: number;
+    temperature: TeamTemperature;
+    points: number;
+}
+
+export interface TeamTemperature {
+    lastNumberOfGames: number;
+    pointsInLastNumberOfGames: number;
+    pointPercentage: number;
+    temperature: 'HOT' | 'COLD' | 'NEUTRAL';
 }

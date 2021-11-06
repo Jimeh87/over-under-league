@@ -12,9 +12,7 @@ import {TeamStandingsService} from "../service/team-standings.service";
 export class OverUnderComponent implements OnInit {
 
   $teamStandings: Observable<TeamStanding[]> = this.teamStandingsService.getStandings()
-      .pipe(
-          map(standings => standings.sort((s1, s2) => s2.pace - s1.pace))
-      );
+      .pipe(map(standings => standings.sort((s1, s2) => s2.pace - s1.pace)));
 
   constructor(private teamStandingsService: TeamStandingsService) {
   }

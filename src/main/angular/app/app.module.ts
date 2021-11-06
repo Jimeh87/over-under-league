@@ -19,11 +19,13 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {ErrorSnackComponent} from './error-snack/error-snack.component';
-import {HttpErrorInterceptor} from "./HttpErrorInterceptor.interceptor";
+import {HttpErrorInterceptor} from "./http-error.interceptor";
 import {CopyClipboardDirective} from './copy-clipboard.directive';
 import {FooterComponent} from './footer/footer.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { WholeNumberPipe } from './pipe/whole-number.pipe';
+import { HotColdIconComponent } from './hot-cold-icon/hot-cold-icon.component';
+import { HotColdTipPipe } from './hot-cold-icon/hot-cold-tip.pipe';
 
 @NgModule({
     declarations: [
@@ -36,7 +38,9 @@ import { WholeNumberPipe } from './pipe/whole-number.pipe';
         ErrorSnackComponent,
         CopyClipboardDirective,
         FooterComponent,
-        WholeNumberPipe
+        WholeNumberPipe,
+        HotColdIconComponent,
+        HotColdTipPipe
     ],
     imports: [
         BrowserModule,

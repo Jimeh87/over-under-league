@@ -1,7 +1,6 @@
-
 <app-user-scores-table *ngIf="$userStandings | async as userStandings; else loading" [userStandings]="userStandings"></app-user-scores-table>
 <ng-template #loading>
     <div class="loading-container">
-        <mat-spinner color="accent" [strokeWidth]="1" [diameter]="300"></mat-spinner>
+        <mat-spinner color="accent" [strokeWidth]="1" [diameter]="50"></mat-spinner>
     </div>
 </ng-template>

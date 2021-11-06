@@ -1,7 +1,7 @@
 package com.overunderleague.controller;
 
-import com.overunderleague.controller.api.UserScoreDto;
-import com.overunderleague.core.userscore.UserScoreService;
+import com.overunderleague.controller.api.UserStandingDto;
+import com.overunderleague.core.userscore.UserStandingsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +14,10 @@ import java.util.List;
 public class UserScoreController {
 
 	@Autowired
-	private UserScoreService userScoreService;
+	private UserStandingsService userStandingsService;
 
 	@GetMapping
-	public List<UserScoreDto> list() {
-		return userScoreService.list();
+	public List<UserStandingDto> list() {
+		return userStandingsService.list();
 	}
 }

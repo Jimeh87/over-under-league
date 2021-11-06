@@ -15,12 +15,7 @@ export class FooterComponent implements OnInit {
   lastUpdate$ = this.lastUpdatedService.get();
 
   constructor(private actuatorService: ActuatorService,
-              private lastUpdatedService: LastUpdatedService,
-              iconRegistry: MatIconRegistry,
-              sanitizer: DomSanitizer) {
-    iconRegistry.addSvgIcon(
-        'github',
-        sanitizer.bypassSecurityTrustResourceUrl('assets/github.svg'));
+              private lastUpdatedService: LastUpdatedService) {
   }
 
   ngOnInit() {

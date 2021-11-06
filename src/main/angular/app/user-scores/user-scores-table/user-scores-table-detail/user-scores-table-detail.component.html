@@ -4,7 +4,7 @@
 
     <ng-container matColumnDef="team">
         <th mat-header-cell *matHeaderCellDef>Team</th>
-        <td mat-cell *matCellDef="let teamScore">{{teamScore.teamNickname}}</td>
+        <td mat-cell *matCellDef="let teamScore">{{teamScore.teamNickname}}  <app-hot-cold-icon [temp]="teamScore.temperature"></app-hot-cold-icon></td>
     </ng-container>
 
     <ng-container matColumnDef="winLose">
@@ -26,8 +26,8 @@
         <th mat-header-cell *matHeaderCellDef>Points</th>
         <td mat-cell
             *matCellDef="let teamScore"
-            [ngClass]="{'positive-number': teamScore.score > 0, 'negative-number': teamScore.score < 0, 'neutral-number': teamScore.score == 0}">
-            {{+teamScore.score | wholeNumber}}
+            [ngClass]="{'positive-number': teamScore.points > 0, 'negative-number': teamScore.points < 0, 'neutral-number': teamScore.points == 0}">
+            {{+teamScore.points | wholeNumber}}
         </td>
     </ng-container>
 

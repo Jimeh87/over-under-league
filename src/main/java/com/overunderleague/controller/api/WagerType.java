@@ -9,7 +9,7 @@ public enum WagerType {
 
 	private int paceToScoreConversion;
 
-	public int toScore(int pace) {
+	public int toPoints(int pace) {
 		return pace * paceToScoreConversion;
 	}
 }

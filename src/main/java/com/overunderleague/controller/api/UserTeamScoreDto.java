@@ -15,5 +15,6 @@ public class UserTeamScoreDto {
 	private Integer wins;
 	private Integer loses;
 	private WagerType wager;
-	private Integer score;
+	private TeamTemperatureDto temperature;
+	private Integer points;
 }

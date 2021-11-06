@@ -15,5 +15,7 @@ public class OverUnderTeamPaceDto {
 	private Integer wins;
 	private Integer loses;
 	private BigDecimal winPercentage;
+	private Integer winsInLastTenGames;
+	private Integer paceInLastTenGames;
 	private Integer pace;
 }

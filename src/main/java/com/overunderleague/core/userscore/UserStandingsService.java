@@ -16,20 +16,22 @@ import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 
 @Service
-public class UserScoreService {
+public class UserStandingsService {
 
 	@Autowired
 	private OverUnderTeamPaceService overUnderTeamPaceService;
 	@Autowired
 	private UserPicksService userPicksService;
+	@Autowired
+	private TeamTemperatureService teamTemperatureService;
 
-	public List<UserScoreDto> list() {
+	public List<UserStandingDto> list() {
 		Map<Team, OverUnderTeamPaceDto> teamPaceByTeam = getTeamPaceByTeam();
 
 		return userPicksService.list()
 				.stream()
 				.map(userPick -> toUserScore(userPick, toUserTeamScores(userPick, teamPaceByTeam)))
-				.sorted(reverseOrder(comparing(UserScoreDto::getScore)))
+				.sorted(reverseOrder(comparing(UserStandingDto::getPoints)))
 				.collect(toList());
 	}
 
@@ -43,7 +45,7 @@ public class UserScoreService {
 		return userPick.getUserPicks()
 				.stream()
 				.map(pick -> toUserTeamScore(pick, teamPaceByTeam.get(pick.getTeam())))
-				.sorted(reverseOrder(comparing(UserTeamScoreDto::getScore)))
+				.sorted(reverseOrder(comparing(UserTeamScoreDto::getPoints)))
 				.collect(toList());
 	}
 
@@ -55,21 +57,29 @@ public class UserScoreService {
 				.setWinOverUnder(teamPace.getWinOverUnder())
 				.setWins(teamPace.getWins())
 				.setLoses(teamPace.getLoses())
+				.setTemperature(teamTemperatureService.get(pick, teamPace))
 				.setWager(pick.getWagerType())
-				.setScore(pick.getWagerType().toScore(teamPace.getPace()));
+				.setPoints(pick.getWagerType().toPoints(teamPace.getPace()));
 	}
 
-	private UserScoreDto toUserScore(UserPicksDto userPick, List<UserTeamScoreDto> userTeamScores) {
-		return new UserScoreDto()
+	private UserStandingDto toUserScore(UserPicksDto userPick, List<UserTeamScoreDto> userTeamScores) {
+		return new UserStandingDto()
 				.setUserNickname(userPick.getUserNickname())
-				.setScore(calculateScore(userTeamScores))
+				.setPoints(calculateScore(userTeamScores))
+				.setTemperature(calculateUserTemperature(userTeamScores))
 				.setTeamScores(userTeamScores);
+	}
+
+	private TeamTemperatureDto calculateUserTemperature(List<UserTeamScoreDto> userTeamScores) {
+		return teamTemperatureService.get(userTeamScores.stream()
+				.map(UserTeamScoreDto::getTemperature)
+				.collect(toList()));
 	}
 
 	private Integer calculateScore(List<UserTeamScoreDto> userTeamScores) {
 		return userTeamScores
 				.stream()
-				.mapToInt(UserTeamScoreDto::getScore)
+				.mapToInt(UserTeamScoreDto::getPoints)
 				.sum();
 	}
 

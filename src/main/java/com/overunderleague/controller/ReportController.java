@@ -1,8 +1,8 @@
 package com.overunderleague.controller;
 
-import com.overunderleague.controller.api.UserScoreDto;
+import com.overunderleague.controller.api.UserStandingDto;
 import com.overunderleague.controller.api.UserTeamScoreDto;
-import com.overunderleague.core.userscore.UserScoreService;
+import com.overunderleague.core.userscore.UserStandingsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,18 +23,18 @@ public class ReportController {
 	private static final String TAB = "\t";
 
 	@Autowired
-	private UserScoreService userScoreService;
+	private UserStandingsService userStandingsService;
 
 	@GetMapping("player-selections")
 	@ResponseBody
 	public String selections(HttpServletResponse response) {
 		StringBuilder sb = new StringBuilder();
-		List<UserScoreDto> users = userScoreService.list()
+		List<UserStandingDto> users = userStandingsService.list()
 				.stream()
-				.sorted(comparing(UserScoreDto::getUserNickname))
+				.sorted(comparing(UserStandingDto::getUserNickname))
 				.collect(toList());
 
-		for (UserScoreDto user : users) {
+		for (UserStandingDto user : users) {
 			sb.append(user.getUserNickname()).append(":").append(NEW_LINE);
 			for (UserTeamScoreDto team : user.getTeamScores().stream().sorted(comparing(UserTeamScoreDto::getTeamNickname)).collect(toList())) {
 				sb.append(TAB)
