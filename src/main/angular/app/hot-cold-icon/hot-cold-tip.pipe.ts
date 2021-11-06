@@ -13,7 +13,11 @@ export class HotColdTipPipe implements PipeTransform {
     } else if (temp.pointsInLastNumberOfGames > 0) {
       pointsDescriptor = 'Gained ';
     }
-    return `${pointsDescriptor}${Math.abs(temp.pointsInLastNumberOfGames)} points in the last ${temp.lastNumberOfGames} games`;
+    let pointOrPoints = 'points';
+    if (Math.abs(temp.pointsInLastNumberOfGames) === 1) {
+      pointOrPoints = 'point';
+    }
+    return `${pointsDescriptor}${Math.abs(temp.pointsInLastNumberOfGames)} ${pointOrPoints} in the last ${temp.lastNumberOfGames} games`;
   }
 
 }
