@@ -1,6 +1,6 @@
 <app-over-under-table *ngIf="$teamStandings | async as teamStandings; else loading" [teamStandings]="teamStandings"></app-over-under-table>
 <ng-template #loading>
     <div class="loading-container">
-        <mat-spinner color="accent" [strokeWidth]="1" [diameter]="300"></mat-spinner>
+        <mat-spinner color="accent" [strokeWidth]="1" [diameter]="50"></mat-spinner>
     </div>
 </ng-template>
