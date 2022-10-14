@@ -17,83 +17,73 @@ public class UserPicksService {
 	private static final List<UserPicksDto> USER_PICKS = Arrays.asList(
 			UserPicksDto.of(
 					"Stu",
-					UserPickDto.of(JAZZ, OVER),
-					UserPickDto.of(SUNS, OVER),
-					UserPickDto.of(WARRIORS, UNDER),
+					UserPickDto.of(RAPTORS, OVER),
+					UserPickDto.of(SEVENTY_SIXERS, OVER),
 					UserPickDto.of(BUCKS, OVER),
-					UserPickDto.of(BULLS, UNDER)
+					UserPickDto.of(TIMBERWOLVES, UNDER)
 			),
 			UserPicksDto.of(
 					"Amanpal",
 					UserPickDto.of(NUGGETS, OVER),
-					UserPickDto.of(RAPTORS, OVER),
-					UserPickDto.of(LAKERS, OVER),
-					UserPickDto.of(CAVALIERS, OVER),
-					UserPickDto.of(THUNDER, OVER)
+					UserPickDto.of(KINGS, OVER),
+					UserPickDto.of(PELICANS, OVER),
+					UserPickDto.of(CELTICS, UNDER)
 			),
 			UserPicksDto.of(
-					"Landon",
-					UserPickDto.of(BULLS, OVER),
-					UserPickDto.of(HEAT, OVER),
-					UserPickDto.of(WARRIORS, OVER),
-					UserPickDto.of(WIZARDS, UNDER),
-					UserPickDto.of(KNICKS, OVER)
+					"Langdon",
+					UserPickDto.of(LAKERS, UNDER),
+					UserPickDto.of(CLIPPERS, UNDER),
+					UserPickDto.of(KNICKS, OVER),
+					UserPickDto.of(MAGIC, OVER)
 			),
 			UserPicksDto.of(
 					"Joel",
-					UserPickDto.of(KINGS, UNDER),
-					UserPickDto.of(PELICANS, UNDER),
-					UserPickDto.of(CLIPPERS, UNDER),
-					UserPickDto.of(PACERS, UNDER),
-					UserPickDto.of(TIMBERWOLVES, OVER)
+					UserPickDto.of(HAWKS, UNDER),
+					UserPickDto.of(MAVERICKS, UNDER),
+					UserPickDto.of(ROCKETS, OVER),
+					UserPickDto.of(SUNS, UNDER)
 			),
 			UserPicksDto.of(
 					"Justin",
-					UserPickDto.of(HAWKS, OVER),
-					UserPickDto.of(MAVERICKS, OVER),
 					UserPickDto.of(CLIPPERS, OVER),
-					UserPickDto.of(HORNETS, OVER),
-					UserPickDto.of(THUNDER, UNDER)
-			),
-			UserPicksDto.of(
-					"Jim",
-					UserPickDto.of(LAKERS, UNDER),
-					UserPickDto.of(PELICANS, OVER),
-					UserPickDto.of(NETS, UNDER),
-					UserPickDto.of(TRAIL_BLAZERS, OVER),
+					UserPickDto.of(THUNDER, UNDER),
+					UserPickDto.of(BULLS, OVER),
 					UserPickDto.of(HEAT, UNDER)
 			),
 			UserPicksDto.of(
+					"Jim",
+					UserPickDto.of(HORNETS, OVER),
+					UserPickDto.of(GRIZZLIES, OVER),
+					UserPickDto.of(PISTONS, UNDER),
+					UserPickDto.of(TRAIL_BLAZERS, UNDER)
+			),
+			UserPicksDto.of(
 					"Mark",
-					UserPickDto.of(NETS, OVER),
-					UserPickDto.of(ROCKETS, UNDER),
-					UserPickDto.of(HORNETS, UNDER),
-					UserPickDto.of(CAVALIERS, UNDER),
-					UserPickDto.of(SEVENTY_SIXERS, OVER)
+					UserPickDto.of(NETS, UNDER),
+					UserPickDto.of(HAWKS, OVER),
+					UserPickDto.of(PELICANS, UNDER),
+					UserPickDto.of(KNICKS, UNDER)
 			),
 			UserPicksDto.of(
 					"Peng",
+					UserPickDto.of(MAGIC, UNDER),
 					UserPickDto.of(SPURS, OVER),
-					UserPickDto.of(WIZARDS, OVER),
-					UserPickDto.of(RAPTORS, UNDER),
-					UserPickDto.of(CELTICS, OVER),
-					UserPickDto.of(JAZZ, UNDER)
+					UserPickDto.of(JAZZ, OVER),
+					UserPickDto.of(CAVALIERS, UNDER)
 			),
 			UserPicksDto.of(
 					"Brennan",
-					UserPickDto.of(KNICKS, UNDER),
-					UserPickDto.of(KINGS, OVER),
-					UserPickDto.of(TRAIL_BLAZERS, UNDER),
-					UserPickDto.of(PISTONS, OVER),
-					UserPickDto.of(NUGGETS, UNDER)
+					UserPickDto.of(JAZZ, UNDER),
+					UserPickDto.of(PACERS, UNDER),
+					UserPickDto.of(ROCKETS, UNDER),
+					UserPickDto.of(WIZARDS, UNDER)
 			),
 			UserPicksDto.of(
 					"Dan",
-					UserPickDto.of(SEVENTY_SIXERS, UNDER),
-					UserPickDto.of(GRIZZLIES, UNDER),
-					UserPickDto.of(TIMBERWOLVES, UNDER),
-					UserPickDto.of(MAGIC, OVER),
-					UserPickDto.of(CELTICS, UNDER)
+					UserPickDto.of(WARRIORS, OVER),
+					UserPickDto.of(MAVERICKS, OVER),
+					UserPickDto.of(KINGS, UNDER),
+					UserPickDto.of(HORNETS, UNDER)
 			)
 	);
 
