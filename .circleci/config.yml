@@ -21,13 +21,12 @@ workflows:
     jobs:
       - maven/test:
           name: build
+          test_results_path: target/surefire-reports
           post-steps:
             - persist_to_workspace:
                 root: .
                 paths:
                   - target/over-under-league.jar
-            - store_test_results:
-                path: target/surefire-reports
             - store_artifacts:
                 path: target/over-under-league.jar
                 destination: jar
