@@ -1,0 +1,34 @@
+version: 2.1
+
+orbs:
+  node: circleci/maven@1.4.0
+
+jobs:
+  deploy:
+    docker:
+      - image: cimg/base:2022.10
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - add_ssh_keys:
+          fingerprints:
+            - "3b:44:a2:86:3e:b0:46:17:85:7a:33:1d:2a:b3:91:b0"
+      - run: bash ./scripts/deploy.sh
+
+workflows:
+  build-and-deploy:
+    jobs:
+      - maven/test:
+          name: build
+          post-steps:
+            - persist_to_workspace:
+                root: .
+                paths:
+                  - target/over-under-league.jar
+#      - deploy:
+#          requires:
+#            - build
+#          filters:
+#            branches:
+#              only: master
