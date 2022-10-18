@@ -26,6 +26,11 @@ workflows:
                 root: .
                 paths:
                   - target/over-under-league.jar
+            - store_test_results:
+                path: target/surefire-reports
+            - store_artifacts:
+                path: target/over-under-league.jar
+                destination: jar
 #      - deploy:
 #          requires:
 #            - build
