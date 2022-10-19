@@ -11,7 +11,9 @@ import {OverUnderTableComponent} from './over-under/over-under-table/over-under-
 import {MatSortModule} from "@angular/material/sort";
 import {UserScoresComponent} from './user-scores/user-scores.component';
 import {UserScoresTableComponent} from './user-scores/user-scores-table/user-scores-table.component';
-import {UserScoresTableDetailComponent} from './user-scores/user-scores-table/user-scores-table-detail/user-scores-table-detail.component';
+import {
+    UserScoresTableDetailComponent
+} from './user-scores/user-scores-table/user-scores-table-detail/user-scores-table-detail.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTabsModule} from "@angular/material/tabs";
@@ -23,9 +25,10 @@ import {HttpErrorInterceptor} from "./http-error.interceptor";
 import {CopyClipboardDirective} from './copy-clipboard.directive';
 import {FooterComponent} from './footer/footer.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
-import { WholeNumberPipe } from './pipe/whole-number.pipe';
-import { HotColdIconComponent } from './hot-cold-icon/hot-cold-icon.component';
-import { HotColdTipPipe } from './hot-cold-icon/hot-cold-tip.pipe';
+import {WholeNumberPipe} from './pipe/whole-number.pipe';
+import {HotColdIconComponent} from './hot-cold-icon/hot-cold-icon.component';
+import {HotColdTipPipe} from './hot-cold-icon/hot-cold-tip.pipe';
+import {TagComponent} from './tag/tag.component';
 
 @NgModule({
     declarations: [
@@ -40,7 +43,8 @@ import { HotColdTipPipe } from './hot-cold-icon/hot-cold-tip.pipe';
         FooterComponent,
         WholeNumberPipe,
         HotColdIconComponent,
-        HotColdTipPipe
+        HotColdTipPipe,
+        TagComponent,
     ],
     imports: [
         BrowserModule,

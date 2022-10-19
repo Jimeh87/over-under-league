@@ -1,4 +1,4 @@
-<mat-toolbar color="accent" class="footer">
+<mat-toolbar class="footer">
     <div matTooltip="Website code">
         <small>
             <a href="https://github.com/jimeh87/over-under-league" target="_blank">
@@ -6,10 +6,9 @@
             </a>
         </small>
     </div>
-    <div matTooltip="NBA standings publish time">
-        <small *ngIf="lastUpdate$ | async as lastUpdate">{{lastUpdate | date:'shortTime'}}</small>
-    </div>
     <div matTooltip="Application version">
         <small *ngIf="build$ | async as build">{{'v' + build.version}}</small>
+    </div>
+    <div>
     </div>
 </mat-toolbar>
