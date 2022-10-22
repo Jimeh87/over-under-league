@@ -1,8 +1,9 @@
 package com.overunderleague.core.userscore;
 
-import com.overunderleague.controller.api.*;
-import com.overunderleague.core.overunder.Team;
-import lombok.AllArgsConstructor;
+import com.overunderleague.controller.api.OverUnderTeamPaceDto;
+import com.overunderleague.controller.api.TeamTemperatureDto;
+import com.overunderleague.controller.api.TemperatureType;
+import com.overunderleague.controller.api.UserPickDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,12 +32,16 @@ public class TeamTemperatureService {
 	}
 
 	private TeamTemperatureDto toTeamTemperatureDto(int games, int points, Function<Double, TemperatureType> temperatureFn) {
-		Double pointPercentage = games == 0 ? null : (double) points / (double) games;
+		Double pointPercentage = calculatePointPercentage(games, points);
 		return new TeamTemperatureDto()
 				.setLastNumberOfGames(games)
 				.setPointsInLastNumberOfGames(points)
 				.setPointPercentage(pointPercentage)
 				.setTemperature(temperatureFn.apply(pointPercentage));
+	}
+
+	private static Double calculatePointPercentage(int games, double points) {
+		return games < PREVIOUS_GAME_COUNT ? null : points / (double) games;
 	}
 
 }

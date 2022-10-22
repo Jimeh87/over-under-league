@@ -1,4 +1,4 @@
-package com.overunderleague.nbaclient.api;
+package com.overunderleague.integration.nbaclient.api;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.function.Function;
-import java.util.function.Predicate;
 
 @AllArgsConstructor
 public enum TemperatureType {

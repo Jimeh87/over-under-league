@@ -4,8 +4,8 @@ import com.overunderleague.controller.api.OverUnderTeamPaceDto;
 import com.overunderleague.core.overunder.OverUnderService;
 import com.overunderleague.core.overunder.OverUnderTeamDto;
 import com.overunderleague.core.overunder.Team;
-import com.overunderleague.nbaclient.NbaClient;
-import com.overunderleague.nbaclient.api.NbaTeamStandingDto;
+import com.overunderleague.core.standing.NbaStandingsService;
+import com.overunderleague.core.standing.NbaTeamStanding;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ import static java.util.stream.Collectors.toList;
 public class OverUnderTeamPaceService {
 
 	@Autowired
-	private NbaClient nbaClient;
+	private NbaStandingsService nbaStandingsService;
 	@Autowired
 	private OverUnderService overUnderService;
 
@@ -26,20 +26,20 @@ public class OverUnderTeamPaceService {
 		return getTeamStandings()
 				.stream()
 				.filter(this::isNbaTeam)
-				.map(nbaTeamStandingDto -> toOverUnderTeamPaceDto(nbaTeamStandingDto, overUnderService.get(Team.getTeamByNbaTeamId(nbaTeamStandingDto.getTeamId()))))
+				.map(nbaTeamStandingDto -> toOverUnderTeamPaceDto(nbaTeamStandingDto, overUnderService.get(Team.getTeamByNbaTeamId(nbaTeamStandingDto.getNbaTeamId()))))
 				.collect(toList());
 	}
 
-	private boolean isNbaTeam(NbaTeamStandingDto nbaTeamStandingDto) {
+	private boolean isNbaTeam(NbaTeamStanding nbaTeamStanding) {
 		// NBA api returns teams not in the NBA (probably just for preseason).
-		return Team.isNbaTeamIdExists(nbaTeamStandingDto.getTeamId());
+		return Team.isNbaTeamIdExists(nbaTeamStanding.getNbaTeamId());
 	}
 
-	private List<NbaTeamStandingDto> getTeamStandings() {
-		return nbaClient.findCurrentStandings().getLeague().getStandard().getTeams();
+	private List<NbaTeamStanding> getTeamStandings() {
+		return nbaStandingsService.getStandings();
 	}
 
-	private OverUnderTeamPaceDto toOverUnderTeamPaceDto(NbaTeamStandingDto teamStanding, OverUnderTeamDto overUnderTeam) {
+	private OverUnderTeamPaceDto toOverUnderTeamPaceDto(NbaTeamStanding teamStanding, OverUnderTeamDto overUnderTeam) {
 		return new OverUnderTeamPaceDto()
 				.setTeam(overUnderTeam.getTeam())
 				.setTeamNickname(overUnderTeam.getNickname())
@@ -52,7 +52,7 @@ public class OverUnderTeamPaceService {
 				.setPace(calculatePace(teamStanding, overUnderTeam.getWinOverUnder()));
 	}
 
-	private int calculatePace(NbaTeamStandingDto teamStanding, BigDecimal winOverUnder) {
+	private int calculatePace(NbaTeamStanding teamStanding, BigDecimal winOverUnder) {
 		return PaceCalculator.builder()
 				.wins(teamStanding.getWin())
 				.loses(teamStanding.getLoss())
@@ -61,7 +61,7 @@ public class OverUnderTeamPaceService {
 				.calculate();
 	}
 
-	private int calculatePaceOverLastTenGames(NbaTeamStandingDto teamStanding, BigDecimal winOverUnder) {
+	private int calculatePaceOverLastTenGames(NbaTeamStanding teamStanding, BigDecimal winOverUnder) {
 		int previousNumberOfGames = Math.min(10, teamStanding.getWin() + teamStanding.getLoss());
 		return PaceCalculator.builder()
 				.wins(teamStanding.getLastTenWin())
