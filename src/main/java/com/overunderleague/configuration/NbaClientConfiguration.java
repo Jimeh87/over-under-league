@@ -2,7 +2,7 @@ package com.overunderleague.configuration;
 
 import com.overunderleague.integration.nbaclient2.NbaClient2;
 import com.overunderleague.core.standing.NbaStandingsProvider;
-import com.overunderleague.core.standing.clientbridge.nbaclient2.NbaClient2NbaStandingsProvider;
+import com.overunderleague.integration.clientbridge.nbaclient2.NbaClient2NbaStandingsProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

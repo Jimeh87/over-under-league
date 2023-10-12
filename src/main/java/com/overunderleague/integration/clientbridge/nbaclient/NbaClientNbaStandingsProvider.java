@@ -1,4 +1,4 @@
-package com.overunderleague.core.standing.clientbridge.nbaclient;
+package com.overunderleague.integration.clientbridge.nbaclient;
 
 import com.overunderleague.integration.nbaclient.NbaClient;
 import com.overunderleague.core.standing.NbaStandingsProvider;
