@@ -1,6 +1,6 @@
 <app-user-scores-table *ngIf="$userStandings | async as userStandings; else loading" [userStandings]="userStandings"></app-user-scores-table>
 <ng-template #loading>
     <div class="loading-container">
-        <mat-spinner color="accent" [strokeWidth]="1" [diameter]="50"></mat-spinner>
+        <div class="fas fa-basketball-ball fade-in" style="color: #C4C1B7; font-size: 10rem"></div>
     </div>
 </ng-template>
