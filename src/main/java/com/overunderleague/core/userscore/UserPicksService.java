@@ -44,7 +44,7 @@ public class UserPicksService {
 					UserPickDto.of(PISTONS, OVER)
 			),
 			UserPicksDto.of(
-					"Stu Licks Butts",
+					"Stu",
 					UserPickDto.of(THUNDER, OVER),
 					UserPickDto.of(CLIPPERS, UNDER),
 					UserPickDto.of(MAVERICKS, UNDER),
