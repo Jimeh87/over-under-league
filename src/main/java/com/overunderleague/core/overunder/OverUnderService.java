@@ -1,62 +1,74 @@
 package com.overunderleague.core.overunder;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
 public class OverUnderService {
 
-	private static final List<OverUnderTeamDto> OVER_UNDER_LIST = Arrays.asList(
-			OverUnderTeamDto.of(Team.BUCKS,          new BigDecimal("55.5")),
-			OverUnderTeamDto.of(Team.BULLS,          new BigDecimal("37.5")),
-			OverUnderTeamDto.of(Team.CAVALIERS,      new BigDecimal("50.5")),
-			OverUnderTeamDto.of(Team.CELTICS,        new BigDecimal("54.5")),
-			OverUnderTeamDto.of(Team.CLIPPERS,       new BigDecimal("45.5")),
-			OverUnderTeamDto.of(Team.GRIZZLIES,      new BigDecimal("46.5")),
-			OverUnderTeamDto.of(Team.HAWKS,          new BigDecimal("42.5")),
-			OverUnderTeamDto.of(Team.HEAT,           new BigDecimal("45.5")),
-			OverUnderTeamDto.of(Team.HORNETS,        new BigDecimal("30.5")),
-			OverUnderTeamDto.of(Team.JAZZ,           new BigDecimal("36.5")),
-			OverUnderTeamDto.of(Team.KINGS,          new BigDecimal("44.5")),
-			OverUnderTeamDto.of(Team.KNICKS,         new BigDecimal("44.5")),
-			OverUnderTeamDto.of(Team.LAKERS,         new BigDecimal("47.5")),
-			OverUnderTeamDto.of(Team.MAGIC,          new BigDecimal("36.5")),
-			OverUnderTeamDto.of(Team.MAVERICKS,      new BigDecimal("44.5")),
-			OverUnderTeamDto.of(Team.NETS,           new BigDecimal("37.5")),
-			OverUnderTeamDto.of(Team.NUGGETS,        new BigDecimal("52.5")),
-			OverUnderTeamDto.of(Team.PACERS,         new BigDecimal("37.5")),
-			OverUnderTeamDto.of(Team.PELICANS,       new BigDecimal("43.5")),
-			OverUnderTeamDto.of(Team.PISTONS,        new BigDecimal("27.5")),
-			OverUnderTeamDto.of(Team.RAPTORS,        new BigDecimal("36.5")),
-			OverUnderTeamDto.of(Team.ROCKETS,        new BigDecimal("31.5")),
-			OverUnderTeamDto.of(Team.SEVENTY_SIXERS, new BigDecimal("50.5")),
-			OverUnderTeamDto.of(Team.SPURS,          new BigDecimal("30.5")),
-			OverUnderTeamDto.of(Team.SUNS,           new BigDecimal("51.5")),
-			OverUnderTeamDto.of(Team.THUNDER,        new BigDecimal("44.5")),
-			OverUnderTeamDto.of(Team.TIMBERWOLVES,   new BigDecimal("43.5")),
-			OverUnderTeamDto.of(Team.TRAIL_BLAZERS,  new BigDecimal("29.5")),
-			OverUnderTeamDto.of(Team.WARRIORS,       new BigDecimal("48.5")),
-			OverUnderTeamDto.of(Team.WIZARDS,        new BigDecimal("24.5"))
-	);
+	@Value("classpath:over-under-2024.csv")
+	private Resource resource;
 
-	private static final Map<Team, OverUnderTeamDto> OVER_UNDER_BY_TEAM = OVER_UNDER_LIST.stream()
-			.collect(Collectors.toMap(OverUnderTeamDto::getTeam, Function.identity()));
+	private List<OverUnderTeamDto> overUnderList;
+	private Map<Team, OverUnderTeamDto> overUnderByTeam;
 
-	public List<OverUnderTeamDto> list(){
-		return OVER_UNDER_LIST;
+	@PostConstruct
+	void loadOverUnderList() throws IOException {
+		List<List<String>> entries = parseOverUnderFile();
+		if (entries.size() != 30) {
+			throw new IllegalStateException(String.format("Incorrect number of teams[%s]", entries.size()));
+		}
+
+		this.overUnderList = entries.stream()
+				.map(entry -> OverUnderTeamDto.of(Team.valueOf(entry.get(0)), new BigDecimal(entry.get(1))))
+				.collect(Collectors.toList());
+
+		this.overUnderByTeam = this.overUnderList.stream()
+				.collect(Collectors.toMap(OverUnderTeamDto::getTeam, Function.identity()));
+	}
+
+	private List<List<String>> parseOverUnderFile() throws IOException {
+		List<List<String>> entries = new ArrayList<>();
+		try (Scanner scanner = new Scanner(resource.getFile())) {
+			while (scanner.hasNextLine()) {
+				entries.add(parseCsvLine(scanner.nextLine()));
+			}
+		}
+
+		return entries;
+	}
+
+	private List<String> parseCsvLine(String line) {
+		List<String> values = new ArrayList<>();
+		try (Scanner rowScanner = new Scanner(line)) {
+			rowScanner.useDelimiter(",");
+			while (rowScanner.hasNext()) {
+				values.add(rowScanner.next());
+			}
+		}
+		return values;
+	}
+
+	public List<OverUnderTeamDto> list() {
+		return overUnderList;
 	}
 
 	public OverUnderTeamDto get(Team team) {
-		if (!OVER_UNDER_BY_TEAM.containsKey(team)) {
+		if (!overUnderByTeam.containsKey(team)) {
 			throw new IllegalArgumentException(String.format("Team not found %s", team));
 		}
-		return OVER_UNDER_BY_TEAM.get(team);
+		return overUnderByTeam.get(team);
 	}
 
 }
