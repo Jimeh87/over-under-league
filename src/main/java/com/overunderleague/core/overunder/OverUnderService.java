@@ -1,6 +1,7 @@
 package com.overunderleague.core.overunder;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +18,7 @@ import java.util.stream.Collectors;
 @Service
 public class OverUnderService {
 
-	@Value("classpath:over-under-2024.csv")
-	private Resource resource;
+	private static final String OVER_UNDER_CSV_PATH = "over-under-2024.csv";
 
 	private List<OverUnderTeamDto> overUnderList;
 	private Map<Team, OverUnderTeamDto> overUnderByTeam;
@@ -39,8 +39,9 @@ public class OverUnderService {
 	}
 
 	private List<List<String>> parseOverUnderFile() throws IOException {
+		ClassPathResource classPathResource = new ClassPathResource(OVER_UNDER_CSV_PATH);
 		List<List<String>> entries = new ArrayList<>();
-		try (Scanner scanner = new Scanner(resource.getFile())) {
+		try (Scanner scanner = new Scanner(classPathResource.getInputStream())) {
 			while (scanner.hasNextLine()) {
 				entries.add(parseCsvLine(scanner.nextLine()));
 			}
