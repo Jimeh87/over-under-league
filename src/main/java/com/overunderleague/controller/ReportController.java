@@ -3,13 +3,13 @@ package com.overunderleague.controller;
 import com.overunderleague.controller.api.UserStandingDto;
 import com.overunderleague.controller.api.UserTeamScoreDto;
 import com.overunderleague.core.userscore.UserStandingsService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 
 import static java.util.Comparator.comparing;
@@ -32,7 +32,7 @@ public class ReportController {
 		List<UserStandingDto> users = userStandingsService.list()
 				.stream()
 				.sorted(comparing(UserStandingDto::getUserNickname))
-				.collect(toList());
+				.toList();
 
 		for (UserStandingDto user : users) {
 			sb.append(user.getUserNickname()).append(":").append(NEW_LINE);
