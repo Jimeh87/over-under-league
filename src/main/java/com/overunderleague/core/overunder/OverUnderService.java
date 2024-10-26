@@ -1,11 +1,9 @@
 package com.overunderleague.core.overunder;
 
-import org.springframework.beans.factory.annotation.Value;
+import jakarta.annotation.PostConstruct;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;

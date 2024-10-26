@@ -5,18 +5,18 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.9.RELEASE</version>
+		<version>3.3.5</version>
 		<relativePath/>
 	</parent>
 	<groupId>com.overunderleague</groupId>
 	<artifactId>overunderleague</artifactId>
-	<version>1.4.0</version>
+	<version>1.5.0</version>
 	<packaging>jar</packaging>
 	<name>service</name>
 	<description>Over/under league service</description>
 
 	<properties>
-		<java.version>11</java.version>
+		<java.version>21</java.version>
 	</properties>
 
 	<dependencies>
@@ -37,6 +37,11 @@
 			<artifactId>caffeine</artifactId>
 			<version>2.7.0</version>
 		</dependency>
+		<dependency> <!-- TODO remove -->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-properties-migrator</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -45,18 +50,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>junit</groupId>
-					<artifactId>junit</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter</artifactId>
-			<version>5.5.1</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
