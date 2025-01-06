@@ -1,0 +1,60 @@
+<article>
+    <table class="w-full divide-y divide-gray-200">
+        <thead>
+        <tr class="text-xs font-medium text-gray-500 uppercase">
+            <th class="text-left px-6 py-4">#</th>
+            <th class="text-left px-6 py-4">Team</th>
+            <th class="text-right px-6 py-4 w-12 min-w-12">Points</th>
+            <th class="px-6 py-4 w-16 min-w-16 max-w-16 text-gray-400 cursor-pointer" (click)="expandCollapseAll()"><app-svg [name]="allExpanded() ? 'chevron-down' : 'chevron-right'"/></th>
+        </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+            @for (standing of standings; track standing.userNickname; let index = $index) {
+                <tr class="cursor-pointer" [appExpandCollapseRow]="standingTeams" [appExpandCollapseRowContext]="{ standing: standing }">
+                    <td class="px-6 py-4 text-gray-500">{{index + 1}}.</td>
+                    <td class="px-6 py-4 font-medium w-full">{{standing.userNickname}} <app-hot-cold-icon class="ml-2" [temp]="standing.temperature"></app-hot-cold-icon></td>
+                    <td class="px-6 py-4 text-right w-12 min-w-12" [ngClass]="{'positive-number': standing.points > 0, 'negative-number': standing.points < 0, 'neutral-number': standing.points == 0}">
+                        {{standing.points | wholeNumber}}
+                    </td>
+                    <td class="px-6 py-4 w-16 min-w-16 max-w-16 text-gray-400"><app-svg [name]="expandCollapseRows?.get(index)?.isExpanded() ? 'chevron-down' : 'chevron-right'"/></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</article>
+
+<ng-template #standingTeams let-standing="standing">
+    <tr @propagateAnimation>
+        <td colspan="4" class="shadow-inner bg-gray-50">
+            <div @collapse>
+                <table *ngIf="standing" class="divide-y divide-gray-200 w-full">
+                    <thead class="text-xs font-medium text-gray-500 uppercase">
+                    <th class="text-left px-4 py-4">Pick</th>
+                    <th class="text-right pl-4 pr-2 py-4">W</th>
+                    <th class="text-right pl-2 pr-4 py-4">L</th>
+                    <th class="text-right px-6 py-4 w-6 min-w-6">Points</th>
+                    <th class="px-6 py-4 w-16 min-w-16 max-w-16"></th>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        @for (teamScore of standing.teamScores; track teamScore.team + teamScore.wager) {
+                            <tr>
+                                <td class="text-left pl-4 pr-1 w-full">
+                                    <div class="flex flex-col">
+                                        <div class="font-medium text-gray-800 flex"><div class="break-all">{{teamScore.teamNickname}}</div><app-hot-cold-icon class="ml-2" [temp]="teamScore.temperature"></app-hot-cold-icon></div>
+                                        <div class="text-xs text-gray-500 font-medium">{{(teamScore.wager | titlecase) + ' ' + teamScore.winOverUnder}}</div>
+                                    </div>
+                                </td>
+                                <td class="text-right pl-4 pr-2 py-4">{{teamScore.wins}}</td>
+                                <td class="text-right pl-2 pr-4 py-4">{{teamScore.loses}}</td>
+                                <td class="text-right px-6 py-4" [ngClass]="{'positive-number': teamScore.points > 0, 'negative-number': teamScore.points < 0, 'neutral-number': teamScore.points == 0}">
+                                    {{teamScore.points | wholeNumber}}
+                                </td>
+                                <td class="px-6 py-4 w-16 min-w-16 max-w-16"></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </td>
+    </tr>
+</ng-template>

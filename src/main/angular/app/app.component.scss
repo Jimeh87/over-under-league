@@ -1,0 +1,15 @@
+.ball {
+  position: absolute;
+  animation: bounce 600ms cubic-bezier(.36,-0.01,.86,.63) infinite;
+  animation-fill-mode: both;
+  animation-direction: alternate;
+}
+
+@keyframes bounce {
+  from {
+    top: 10%;
+  }
+  to {
+    top: 40%;
+  }
+}

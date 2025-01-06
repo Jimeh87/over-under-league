@@ -1,29 +1,19 @@
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
-//@import '~@angular/material/theming';
-//@import '~@fortawesome/fontawesome-free/css/all.min.css';
-//@import 'src/main/angular/material-theme';
-//// Plus imports for other components in your app.
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+//html, body {
+//  height: 100%;
+//  background-color: #fafafa;
+//}
 //
-//// Include the common styles for Angular Material. We include this here so that you only
-//// have to load a single css file for Angular Material in your app.
-//// Be sure that you only ever include this mixin once!
-//@include mat-core();
-
-// end theme
-
-
-html, body {
-  height: 100%;
-  background-color: #fafafa;
-}
-
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  display: flex;
-  flex-direction: column;
-}
+//body {
+//  margin: 0;
+//  font-family: Roboto, "Helvetica Neue", sans-serif;
+//  display: flex;
+//  flex-direction: column;
+//}
 
 .positive-number {
   color: green;
@@ -44,9 +34,8 @@ body {
   margin-top: 5rem;
 }
 
-.fade-in {
-  animation: fadeIn ease 2s, spin 2s linear infinite;;
-
+.spin {
+  animation: fadeIn ease 2s, spin 2s linear infinite;
 }
 
 @keyframes fadeIn {
