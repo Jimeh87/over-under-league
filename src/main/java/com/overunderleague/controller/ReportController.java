@@ -3,17 +3,16 @@ package com.overunderleague.controller;
 import com.overunderleague.controller.api.UserStandingDto;
 import com.overunderleague.controller.api.UserTeamScoreDto;
 import com.overunderleague.core.userscore.UserStandingsService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 import static java.util.Comparator.comparing;
-import static java.util.stream.Collectors.toList;
 
 @RequestMapping("/api/reports")
 @Controller
@@ -32,11 +31,11 @@ public class ReportController {
 		List<UserStandingDto> users = userStandingsService.list()
 				.stream()
 				.sorted(comparing(UserStandingDto::getUserNickname))
-				.collect(toList());
+				.toList();
 
 		for (UserStandingDto user : users) {
 			sb.append(user.getUserNickname()).append(":").append(NEW_LINE);
-			for (UserTeamScoreDto team : user.getTeamScores().stream().sorted(comparing(UserTeamScoreDto::getTeamNickname)).collect(toList())) {
+			for (UserTeamScoreDto team : user.getTeamScores().stream().sorted(comparing(UserTeamScoreDto::getTeamNickname)).toList()) {
 				sb.append(TAB)
 						.append(team.getTeamNickname())
 						.append("(").append(team.getWinOverUnder()).append(")")

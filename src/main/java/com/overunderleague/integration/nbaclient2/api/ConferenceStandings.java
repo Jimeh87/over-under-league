@@ -1,7 +1,8 @@
 
 package com.overunderleague.integration.nbaclient2.api;
 
-import javax.annotation.Generated;
+
+import jakarta.annotation.Generated;
 
 @Generated("jsonschema2pojo")
 public class ConferenceStandings {
