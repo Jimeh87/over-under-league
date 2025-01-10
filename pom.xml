@@ -155,6 +155,9 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<executable>true</executable>
+					<image>
+						<name>jimeh87/overunderleague</name>
+					</image>
 				</configuration>
 				<executions>
 					<execution>
