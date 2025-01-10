@@ -42,7 +42,10 @@ jobs:
           name: Authenticate with Docker Hub
           command: |
             echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-      
+      - run:
+          name: List docker images
+          command: |
+            docker images
       - run:
           name: Push docker image
           command: |
