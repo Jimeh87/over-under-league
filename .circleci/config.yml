@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  maven: circleci/maven@1.4.0
+  maven: circleci/maven@2.0.0
 
 jobs:
   deploy:
@@ -15,6 +15,7 @@ jobs:
           fingerprints:
             - "3b:44:a2:86:3e:b0:46:17:85:7a:33:1d:2a:b3:91:b0"
       - run: bash ./scripts/deploy.sh
+    executor: j21
 
 workflows:
   build-and-deploy:
