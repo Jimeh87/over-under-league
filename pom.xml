@@ -161,7 +161,6 @@
 						<goals>
 							<goal>build-info</goal>
 							<goal>repackage</goal>
-							<goal>build-image-no-fork</goal>
 						</goals>
 					</execution>
 				</executions>
