@@ -49,7 +49,7 @@ jobs:
       - run:
           name: Push docker image
           command: |
-            docker push overunderleague:latest
+            docker push jimeh87/overunderleague:2.0.0
 
 workflows:
   version: 2
