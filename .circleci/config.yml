@@ -1,44 +1,32 @@
 version: 2.1
 
-orbs:
-  maven: circleci/maven@2.0.0
-
 executors:
-  java21:
+  java:
     docker:
-      - image: 'cimg/openjdk:21.0.5'
+      - image: cimg/openjdk:21.0
+    resource_class: small
 
 jobs:
-  deploy:
-    docker:
-      - image: cimg/base:2022.10
+  build:
+    executor: java
     steps:
       - checkout
-      - attach_workspace:
-          at: .
-      - add_ssh_keys:
-          fingerprints:
-            - "3b:44:a2:86:3e:b0:46:17:85:7a:33:1d:2a:b3:91:b0"
-      - run: bash ./scripts/deploy.sh
+      - restore_cache:
+          keys:
+            - maven-{{ checksum "pom.xml" }}
+      - run:
+          name: Build and Test
+          command: mvn clean install
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: maven-{{ checksum "pom.xml" }}
+      - store_artifacts:
+          path: target
+          destination: build-artifacts
 
 workflows:
-  build-and-deploy:
+  version: 2
+  build_and_test:
     jobs:
-      - maven/test:
-          name: build
-          executors: java21
-          test_results_path: target/surefire-reports
-          post-steps:
-            - persist_to_workspace:
-                root: .
-                paths:
-                  - target/over-under-league.jar
-            - store_artifacts:
-                path: target/over-under-league.jar
-                destination: jar
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
+      - build
