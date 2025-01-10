@@ -15,7 +15,6 @@ jobs:
       - restore_cache:
           keys:
             - maven-{{ checksum "pom.xml" }}
-            - maven-
       - run:
           name: Build and test
           command: mvn clean install
@@ -23,9 +22,11 @@ jobs:
           paths:
             - ~/.m2
           key: maven-{{ checksum "pom.xml" }}
+      - store_test_results:
+        path: target/surefire-reports
       - store_artifacts:
-          path: target
-          destination: build-artifacts
+          path: target/over-under-league.jar
+          destination: .
 
 workflows:
   version: 2
