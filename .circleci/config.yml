@@ -27,9 +27,30 @@ jobs:
       - store_artifacts:
           path: target/over-under-league.jar
           destination: .
+  deploy:
+    executor: java
+    steps:
+      - checkout
+      - setup_remote_docker
+      - restore_cache:
+          keys:
+            - maven-{{ checksum "pom.xml" }}
+      - run:
+          name: Build docker image
+          command: ./mvnw spring-boot:build-image
+      - run:
+          name: Authenticate with Docker Hub
+          command: |
+            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      
+      - run:
+          name: Push docker image
+          command: |
+            docker push jimeh87/overunderleague:latest
 
 workflows:
   version: 2
   build_and_test:
     jobs:
       - build
+      - deploy
