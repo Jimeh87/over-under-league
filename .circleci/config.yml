@@ -26,7 +26,7 @@ jobs:
           path: target/surefire-reports
       - store_artifacts:
           path: target/over-under-league.jar
-          destination: artifacts
+          destination: .
 
 workflows:
   version: 2
