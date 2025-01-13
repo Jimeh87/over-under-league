@@ -2,6 +2,7 @@
 package com.overunderleague.integration.nbaclient2.api;
 
 import jakarta.annotation.Generated;
+
 import java.math.BigDecimal;
 
 @Generated("jsonschema2pojo")
