@@ -158,6 +158,7 @@
 					<image>
 						<name>overunderleague</name>
 					</image>
+					<createdDate>now</createdDate>
 				</configuration>
 				<executions>
 					<execution>

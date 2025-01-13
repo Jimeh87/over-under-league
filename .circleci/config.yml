@@ -45,7 +45,7 @@ jobs:
       - run:
           name: Tag docker image
           command: |
-            docker tag overunderleague:2.0.0 "$DOCKER_USERNAME"/overunderleague:latest
+            docker tag overunderleague:latest "$DOCKER_USERNAME"/overunderleague:latest
       - run:
           name: List docker images
           command: |
