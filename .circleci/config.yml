@@ -43,13 +43,17 @@ jobs:
           command: |
             echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
       - run:
+          name: Tag docker image
+          command: |
+            docker tag overunderleague:2.0.0 "$DOCKER_USERNAME"/overunderleague:latest
+      - run:
           name: List docker images
           command: |
             docker images
       - run:
           name: Push docker image
           command: |
-            docker push jimeh87/overunderleague:2.0.0
+            docker push "$DOCKER_USERNAME"/overunderleague:2.0.0
 
 workflows:
   version: 2

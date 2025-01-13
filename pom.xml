@@ -156,7 +156,7 @@
 				<configuration>
 					<executable>true</executable>
 					<image>
-						<name>jimeh87/overunderleague</name>
+						<name>overunderleague</name>
 					</image>
 				</configuration>
 				<executions>
