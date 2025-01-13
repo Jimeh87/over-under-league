@@ -24,9 +24,6 @@ jobs:
           key: maven-{{ checksum "pom.xml" }}
       - store_test_results:
           path: target/surefire-reports
-      - store_artifacts:
-          path: target/over-under-league.jar
-          destination: .
   deploy:
     executor: java
     steps:
@@ -46,10 +43,6 @@ jobs:
           name: Tag docker image
           command: |
             docker tag overunderleague:latest "$DOCKER_USERNAME"/overunderleague:latest
-      - run:
-          name: List docker images
-          command: |
-            docker images
       - run:
           name: Push docker image
           command: |
