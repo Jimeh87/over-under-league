@@ -1,24 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActuatorService} from "../service/actuator.service";
-import {MatIconRegistry} from "@angular/material/icon";
-import {DomSanitizer} from "@angular/platform-browser";
-import {LastUpdatedService} from "../service/last-updated.service";
+import {Observable} from "rxjs";
+import {ActuatorBuild} from "../service/actuator-build.interface";
+import {AsyncPipe, NgIf} from "@angular/common";
+import {SvgComponent} from "../svg/svg.component";
 
 @Component({
-  selector: 'app-footer',
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss']
+    selector: 'app-footer',
+    templateUrl: './footer.component.html',
+    styleUrls: ['./footer.component.scss'],
+    imports: [
+        AsyncPipe,
+        SvgComponent,
+        NgIf
+    ],
+    standalone: true
 })
 export class FooterComponent implements OnInit {
 
-  build$ = this.actuatorService.getBuild();
-  lastUpdate$ = this.lastUpdatedService.get();
+    build$!: Observable<ActuatorBuild>;
 
-  constructor(private actuatorService: ActuatorService,
-              private lastUpdatedService: LastUpdatedService) {
-  }
+    constructor(private actuatorService: ActuatorService) {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        this.build$ = this.actuatorService.getBuild();
+    }
 
 }

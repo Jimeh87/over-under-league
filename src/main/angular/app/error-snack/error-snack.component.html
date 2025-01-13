@@ -1,7 +1,0 @@
-<span>
-    Something went wrong. Please try again later.
-</span>
-<br><br>
-<button mat-raised-button color="warn" [app-copy-clipboard]="error | json" (copied)="copied()">Copy Error</button>
-<br>
-<small *ngIf="errorCopied">Error copied to clipboard</small>

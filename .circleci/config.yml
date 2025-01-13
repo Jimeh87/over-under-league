@@ -1,35 +1,58 @@
 version: 2.1
 
-orbs:
-  maven: circleci/maven@1.4.0
+executors:
+  java:
+    docker:
+      - image: cimg/openjdk:21.0
+    resource_class: small
 
 jobs:
-  deploy:
-    docker:
-      - image: cimg/base:2022.10
+  build:
+    executor: java
     steps:
       - checkout
-      - attach_workspace:
-          at: .
-      - add_ssh_keys:
-          fingerprints:
-            - "3b:44:a2:86:3e:b0:46:17:85:7a:33:1d:2a:b3:91:b0"
-      - run: bash ./scripts/deploy.sh
+      - setup_remote_docker
+      - restore_cache:
+          keys:
+            - maven-{{ checksum "pom.xml" }}
+      - run:
+          name: Build and test
+          command: ./mvnw clean install
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: maven-{{ checksum "pom.xml" }}
+      - store_test_results:
+          path: target/surefire-reports
+  deploy:
+    executor: java
+    steps:
+      - checkout
+      - setup_remote_docker
+      - restore_cache:
+          keys:
+            - maven-{{ checksum "pom.xml" }}
+      - run:
+          name: Build docker image
+          command: ./mvnw spring-boot:build-image
+      - run:
+          name: Authenticate with Docker Hub
+          command: |
+            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      - run:
+          name: Tag docker image
+          command: |
+            docker tag overunderleague:latest "$DOCKER_USERNAME"/overunderleague:latest
+      - run:
+          name: Push docker image
+          command: |
+            docker push "$DOCKER_USERNAME"/overunderleague:latest
 
 workflows:
-  build-and-deploy:
+  version: 2
+  build_deploy:
     jobs:
-      - maven/test:
-          name: build
-          test_results_path: target/surefire-reports
-          post-steps:
-            - persist_to_workspace:
-                root: .
-                paths:
-                  - target/over-under-league.jar
-            - store_artifacts:
-                path: target/over-under-league.jar
-                destination: jar
+      - build
       - deploy:
           requires:
             - build

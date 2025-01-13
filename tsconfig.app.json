@@ -5,14 +5,9 @@
     "types": []
   },
   "files": [
-    "src/main/angular/main.ts",
-    "src/main/angular/polyfills.ts"
+    "src/main/angular/main.ts"
   ],
   "include": [
-    "src/main/angular/**/*.ts"
-  ],
-  "exclude": [
-    "src/main/angular/test.ts",
-    "src/main/angular/**/*.spec.ts"
+    "src/main/angular/**/*.d.ts"
   ]
 }

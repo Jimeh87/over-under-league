@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1rem" height="1rem">
+    <!--!Font Awesome Pro 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2024 Fonticons, Inc.-->
+    <path fill="#b22222"
+          d="M0 456a56 56 0 0 1 56-56c141.6 0 163.4-181.2 221.9-250.8l52.8 24.2v89.7h107.5l37.1 38.5C426.7 389.1 268.6 512 56 512a56 56 0 0 1 -56-56z"/>
+    <path fill="#4a6448"
+          d="M362.7 152.9L288 118.6c22.3-14 48.3-22.6 76.3-22.6a142.9 142.9 0 0 1 57.2 12c18.5-37.2 8.3-62 1.4-72.3a8.1 8.1 0 0 1 .9-10.2l22.9-23a6.7 6.7 0 0 1 .7-.6A8 8 0 0 1 458.6 3c18.6 23.5 35.3 71.9 3.1 131.8A154 154 0 0 1 512 248.7c0 13.7-2.3 26.7-5.6 39.3l-54.7-56.9h-89.1z"/>
+</svg>

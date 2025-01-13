@@ -1,7 +1,7 @@
 
 package com.overunderleague.integration.nbaclient2.api;
 
-import javax.annotation.processing.Generated;
+import jakarta.annotation.Generated;
 import java.util.List;
 
 @Generated("jsonschema2pojo")

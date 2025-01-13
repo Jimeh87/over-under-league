@@ -1,19 +1,33 @@
-import {Component} from '@angular/core';
-import {MatIconRegistry} from "@angular/material/icon";
-import {DomSanitizer} from "@angular/platform-browser";
+import {Component, OnInit} from '@angular/core';
+import {RouterOutlet} from '@angular/router';
+import {UserStandingsService} from "./service/user-standings.service";
+import {UserStanding} from "./service/user-standing.interface";
+import {HeaderComponent} from "./header/header.component";
+import {StandingsComponent} from "./standings/standings.component";
+import {SvgComponent} from "./svg/svg.component";
+import {FooterComponent} from "./footer/footer.component";
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet, HeaderComponent, StandingsComponent, SvgComponent, FooterComponent],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
-    iconRegistry.addSvgIcon('sports-basketball', sanitizer.bypassSecurityTrustResourceUrl('assets/sports_basketball-24px.svg'));
-    iconRegistry.addSvgIcon('arrow-down', sanitizer.bypassSecurityTrustResourceUrl('assets/keyboard_arrow_down-24px.svg'));
-    iconRegistry.addSvgIcon('arrow-up', sanitizer.bypassSecurityTrustResourceUrl('assets/keyboard_arrow_up-24px.svg'));
-    iconRegistry.addSvgIcon('github', sanitizer.bypassSecurityTrustResourceUrl('assets/github.svg'));
+  loading: boolean = true;
+  standings: UserStanding[] = [];
+
+  constructor(private userStandingsService: UserStandingsService) {
   }
 
+  ngOnInit(): void {
+    this.loading = true;
+    this.userStandingsService.getStandings()
+        .subscribe(standings => {
+          this.standings = standings;
+          this.loading = false;
+        });
+  }
 }

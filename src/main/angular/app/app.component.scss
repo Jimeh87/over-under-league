@@ -1,11 +1,15 @@
-.app-container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.ball {
+  position: absolute;
+  animation: bounce 600ms cubic-bezier(.36,-0.01,.86,.63) infinite;
+  animation-fill-mode: both;
+  animation-direction: alternate;
 }
-.content-container {
-  flex: 1;
-}
-.footer-container {
-  flex-shrink: 0;
+
+@keyframes bounce {
+  from {
+    top: 10%;
+  }
+  to {
+    top: 40%;
+  }
 }

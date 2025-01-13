@@ -1,8 +1,8 @@
 
 package com.overunderleague.integration.nbaclient2.api;
 
+import jakarta.annotation.Generated;
 
-import javax.annotation.processing.Generated;
 
 @Generated("jsonschema2pojo")
 public class Context {
