@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 import {Observable, of, tap} from "rxjs";
@@ -20,7 +20,7 @@ export class SvgService {
       return of(<SafeHtml>this.svgCache.get(name));
     }
 
-    return this.httpClient.get(`assets/${name}.svg`, {responseType: 'text'})
+    return this.httpClient.get(`assets/${name}.svg?v=2.0.0`, {responseType: 'text'})
         .pipe(
             map(svg => this.sanitizer.bypassSecurityTrustHtml(svg)),
             tap(safeSvg => this.svgCache.set(name, safeSvg))
