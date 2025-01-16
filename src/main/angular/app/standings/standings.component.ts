@@ -56,7 +56,11 @@ export class StandingsComponent {
         this.expandCollapseRows.forEach(row => row.expand())
     }
 
-    allExpanded() {
+    allExpanded(): boolean {
+        if (!this.expandCollapseRows) {
+            return false;
+        }
+
         for (let i = 0; i < this.expandCollapseRows?.length; i++) {
             if (!this.expandCollapseRows.get(i)?.isExpanded()) {
                 return false;
