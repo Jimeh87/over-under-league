@@ -15,6 +15,10 @@ public class UserPicksDto {
 	private List<UserPickDto> userPicks;
 
 	public static UserPicksDto of(String userNickname, UserPickDto... userPickDtos) {
-		return new UserPicksDto(userNickname, Arrays.asList(userPickDtos));
+		return of(userNickname, Arrays.asList(userPickDtos));
+	}
+
+	public static UserPicksDto of(String userNickname, List<UserPickDto> userPickDtos) {
+		return new UserPicksDto(userNickname, userPickDtos);
 	}
 }

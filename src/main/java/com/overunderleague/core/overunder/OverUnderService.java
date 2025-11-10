@@ -1,5 +1,6 @@
 package com.overunderleague.core.overunder;
 
+import com.overunderleague.util.Csv;
 import jakarta.annotation.PostConstruct;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
@@ -16,14 +17,14 @@ import java.util.stream.Collectors;
 @Service
 public class OverUnderService {
 
-	private static final String OVER_UNDER_CSV_PATH = "over-under-2024.csv";
+	private static final String OVER_UNDER_CSV_PATH = "over-under-2025.csv";
 
 	private List<OverUnderTeamDto> overUnderList;
 	private Map<Team, OverUnderTeamDto> overUnderByTeam;
 
 	@PostConstruct
-	void loadOverUnderList() throws IOException {
-		List<List<String>> entries = parseOverUnderFile();
+	void loadOverUnderList() {
+		List<List<String>> entries = Csv.parse(OVER_UNDER_CSV_PATH);
 		if (entries.size() != 30) {
 			throw new IllegalStateException(String.format("Incorrect number of teams[%s]", entries.size()));
 		}
@@ -34,29 +35,6 @@ public class OverUnderService {
 
 		this.overUnderByTeam = this.overUnderList.stream()
 				.collect(Collectors.toMap(OverUnderTeamDto::getTeam, Function.identity()));
-	}
-
-	private List<List<String>> parseOverUnderFile() throws IOException {
-		ClassPathResource classPathResource = new ClassPathResource(OVER_UNDER_CSV_PATH);
-		List<List<String>> entries = new ArrayList<>();
-		try (Scanner scanner = new Scanner(classPathResource.getInputStream())) {
-			while (scanner.hasNextLine()) {
-				entries.add(parseCsvLine(scanner.nextLine()));
-			}
-		}
-
-		return entries;
-	}
-
-	private List<String> parseCsvLine(String line) {
-		List<String> values = new ArrayList<>();
-		try (Scanner rowScanner = new Scanner(line)) {
-			rowScanner.useDelimiter(",");
-			while (rowScanner.hasNext()) {
-				values.add(rowScanner.next());
-			}
-		}
-		return values;
 	}
 
 	public List<OverUnderTeamDto> list() {

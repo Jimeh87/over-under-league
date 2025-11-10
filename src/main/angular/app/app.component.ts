@@ -8,26 +8,29 @@ import {SvgComponent} from "./svg/svg.component";
 import {FooterComponent} from "./footer/footer.component";
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, HeaderComponent, StandingsComponent, SvgComponent, FooterComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+    selector: 'app-root',
+    standalone: true,
+    imports: [RouterOutlet, HeaderComponent, StandingsComponent, SvgComponent, FooterComponent],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
+    error: boolean = false;
+    loading: boolean = true;
+    standings: UserStanding[] = [];
 
-  loading: boolean = true;
-  standings: UserStanding[] = [];
+    constructor(private userStandingsService: UserStandingsService) {
+    }
 
-  constructor(private userStandingsService: UserStandingsService) {
-  }
-
-  ngOnInit(): void {
-    this.loading = true;
-    this.userStandingsService.getStandings()
-        .subscribe(standings => {
-          this.standings = standings;
-          this.loading = false;
-        });
-  }
+    ngOnInit(): void {
+        this.loading = true;
+        this.userStandingsService.getStandings()
+            .subscribe({
+                next: standings => {
+                    this.standings = standings;
+                    this.loading = false;
+                },
+                error: err => this.error = true
+            });
+    }
 }

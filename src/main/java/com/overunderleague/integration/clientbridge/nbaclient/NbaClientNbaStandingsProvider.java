@@ -20,7 +20,7 @@ public class NbaClientNbaStandingsProvider implements NbaStandingsProvider {
 				.getStandard()
 				.getTeams()
 				.stream()
-				.map(NbaClientTeamStandingBridge::new)
+				.map(NbaClientTeamStandingAdapter::new)
 				.collect(Collectors.toList());
 	}
 

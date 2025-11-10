@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import java.math.BigDecimal;
 
 @AllArgsConstructor
-public class NbaClientTeamStandingBridge implements NbaTeamStanding {
+public class NbaClientTeamStandingAdapter implements NbaTeamStanding {
 
 	private final NbaTeamStandingDto nbaTeamStandingDto;
 
@@ -17,22 +17,22 @@ public class NbaClientTeamStandingBridge implements NbaTeamStanding {
 	}
 
 	@Override
-	public Integer getWin() {
+	public int getWins() {
 		return nbaTeamStandingDto.getWin();
 	}
 
 	@Override
-	public Integer getLoss() {
+	public int getLosses() {
 		return nbaTeamStandingDto.getLoss();
 	}
 
 	@Override
-	public BigDecimal getWinPct() {
+	public BigDecimal getWinPercentage() {
 		return nbaTeamStandingDto.getWinPct();
 	}
 
 	@Override
-	public Integer getLastTenWin() {
+	public int getLastTenGameWins() {
 		return nbaTeamStandingDto.getLastTenWin();
 	}
 

@@ -4,28 +4,26 @@ import com.overunderleague.controller.api.UserStandingDto;
 import com.overunderleague.controller.api.UserTeamScoreDto;
 import com.overunderleague.core.userscore.UserStandingsService;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 import static java.util.Comparator.comparing;
 
 @RequestMapping("/api/reports")
-@Controller
+@RestController
+@RequiredArgsConstructor
 public class ReportController {
 
 	private static final String NEW_LINE = "\n";
 	private static final String TAB = "\t";
 
-	@Autowired
-	private UserStandingsService userStandingsService;
+	private final UserStandingsService userStandingsService;
 
 	@GetMapping("player-selections")
-	@ResponseBody
 	public String selections(HttpServletResponse response) {
 		StringBuilder sb = new StringBuilder();
 		List<UserStandingDto> users = userStandingsService.list()

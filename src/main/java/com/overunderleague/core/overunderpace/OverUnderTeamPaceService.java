@@ -44,28 +44,28 @@ public class OverUnderTeamPaceService {
 				.setTeam(overUnderTeam.getTeam())
 				.setTeamNickname(overUnderTeam.getNickname())
 				.setWinOverUnder(overUnderTeam.getWinOverUnder())
-				.setWins(teamStanding.getWin())
-				.setLoses(teamStanding.getLoss())
-				.setWinPercentage(teamStanding.getWinPct())
-				.setWinsInLastTenGames(teamStanding.getLastTenWin())
+				.setWins(teamStanding.getWins())
+				.setLoses(teamStanding.getLosses())
+				.setWinPercentage(teamStanding.getWinPercentage())
+				.setWinsInLastTenGames(teamStanding.getLastTenGameWins())
 				.setPaceInLastTenGames(calculatePaceOverLastTenGames(teamStanding, overUnderTeam.getWinOverUnder()))
 				.setPace(calculatePace(teamStanding, overUnderTeam.getWinOverUnder()));
 	}
 
 	private int calculatePace(NbaTeamStanding teamStanding, BigDecimal winOverUnder) {
 		return PaceCalculator.builder()
-				.wins(teamStanding.getWin())
-				.loses(teamStanding.getLoss())
+				.wins(teamStanding.getWins())
+				.loses(teamStanding.getLosses())
 				.overUnder(winOverUnder.doubleValue())
 				.build()
 				.calculate();
 	}
 
 	private int calculatePaceOverLastTenGames(NbaTeamStanding teamStanding, BigDecimal winOverUnder) {
-		int previousNumberOfGames = Math.min(10, teamStanding.getWin() + teamStanding.getLoss());
+		int previousNumberOfGames = Math.min(10, teamStanding.getWins() + teamStanding.getLosses());
 		return PaceCalculator.builder()
-				.wins(teamStanding.getLastTenWin())
-				.loses(previousNumberOfGames - teamStanding.getLastTenWin())
+				.wins(teamStanding.getLastTenGameWins())
+				.loses(previousNumberOfGames - teamStanding.getLastTenGameWins())
 				.overUnder(winOverUnder.doubleValue())
 				.build()
 				.calculate();

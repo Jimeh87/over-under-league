@@ -3,7 +3,7 @@ package com.overunderleague.core.userscore;
 import com.overunderleague.controller.api.*;
 import com.overunderleague.core.overunder.Team;
 import com.overunderleague.core.overunderpace.OverUnderTeamPaceService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,14 +16,12 @@ import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 
 @Service
+@RequiredArgsConstructor
 public class UserStandingsService {
 
-	@Autowired
-	private OverUnderTeamPaceService overUnderTeamPaceService;
-	@Autowired
-	private UserPicksService userPicksService;
-	@Autowired
-	private TeamTemperatureService teamTemperatureService;
+	private final OverUnderTeamPaceService overUnderTeamPaceService;
+	private final UserPicksService userPicksService;
+	private final TeamTemperatureService teamTemperatureService;
 
 	public List<UserStandingDto> list() {
 		Map<Team, OverUnderTeamPaceDto> teamPaceByTeam = getTeamPaceByTeam();
