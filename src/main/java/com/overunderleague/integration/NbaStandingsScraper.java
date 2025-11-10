@@ -4,6 +4,7 @@ import com.overunderleague.integration.page.NbaStandingsPage;
 import com.overunderleague.integration.webdriver.WebDriverFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 @Component
 public class NbaStandingsScraper {
 
+	@Cacheable("nbaStandings")
 	public List<NbaStandingsPage.TeamStanding> scrape() {
 		log.info("Starting NBA standings scrape...");
 		WebDriver driver = WebDriverFactory.createChromeDriver();
