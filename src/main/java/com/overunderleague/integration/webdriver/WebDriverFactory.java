@@ -20,7 +20,16 @@ public class WebDriverFactory {
 		log.debug("ChromeDriver setup complete");
 		
 		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--headless", "--disable-gpu", "--no-sandbox");
+		
+		// Use CHROME_BIN environment variable if set (for Docker/container environments)
+		String chromeBin = System.getenv("CHROME_BIN");
+		if (chromeBin != null && !chromeBin.isEmpty()) {
+			options.setBinary(chromeBin);
+			log.debug("Using Chrome binary from CHROME_BIN: {}", chromeBin);
+		}
+		
+		options.addArguments("--headless=new", "--disable-gpu", "--no-sandbox");
+		options.addArguments("--disable-dev-shm-usage");
 		options.addArguments("--user-agent=" + USER_AGENT);
 		
 		WebDriver driver = new ChromeDriver(options);
