@@ -176,11 +176,14 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<executable>true</executable>
+					<executable>false</executable>
 					<image>
 						<name>overunderleague</name>
 					</image>
 					<createdDate>now</createdDate>
+					<layers>
+						<enabled>true</enabled>
+					</layers>
 				</configuration>
 				<executions>
 					<execution>

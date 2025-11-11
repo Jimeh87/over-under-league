@@ -24,17 +24,20 @@ jobs:
           key: maven-{{ checksum "pom.xml" }}
       - store_test_results:
           path: target/surefire-reports
+      - persist_to_workspace:
+          root: .
+          paths:
+            - target
   deploy:
     executor: java
     steps:
       - checkout
+      - attach_workspace:
+          at: .
       - setup_remote_docker
-      - restore_cache:
-          keys:
-            - maven-{{ checksum "pom.xml" }}
       - run:
           name: Build docker image
-          command: ./mvnw spring-boot:build-image
+          command: docker build -t overunderleague:latest .
       - run:
           name: Authenticate with Docker Hub
           command: |
