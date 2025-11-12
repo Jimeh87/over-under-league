@@ -1,7 +1,5 @@
-package com.overunderleague.integration.page;
+package com.overunderleague.integration.nbascraper;
 
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;

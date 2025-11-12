@@ -1,7 +1,5 @@
-package com.overunderleague.integration;
+package com.overunderleague.integration.nbascraper;
 
-import com.overunderleague.integration.page.NbaStandingsPage;
-import com.overunderleague.integration.webdriver.WebDriverFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.springframework.cache.annotation.Cacheable;

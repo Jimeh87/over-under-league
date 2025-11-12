@@ -12,9 +12,7 @@ ENV CHROMEDRIVER_PATH=/usr/bin/chromedriver
 
 WORKDIR /app
 
-# Copy the JAR file directly
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
 
-# Run the JAR directly
 ENTRYPOINT ["java", "-jar", "app.jar"]

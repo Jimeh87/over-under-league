@@ -2,7 +2,7 @@ package com.overunderleague.integration.clientbridge.nbascraper;
 
 import com.overunderleague.core.standing.NbaStandingsProvider;
 import com.overunderleague.core.standing.NbaTeamStanding;
-import com.overunderleague.integration.NbaStandingsScraper;
+import com.overunderleague.integration.nbascraper.NbaStandingsScraper;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;

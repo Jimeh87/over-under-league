@@ -1,7 +1,7 @@
 package com.overunderleague.integration.clientbridge.nbascraper;
 
 import com.overunderleague.core.standing.NbaTeamStanding;
-import com.overunderleague.integration.page.NbaStandingsPage;
+import com.overunderleague.integration.nbascraper.NbaStandingsPage;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
