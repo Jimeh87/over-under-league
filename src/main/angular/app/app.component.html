@@ -9,8 +9,13 @@
             <app-standings [standings]="standings"></app-standings>
         } @else {
             <div class="loading-container">
-                <div class="ball">
-                    <app-svg name="basketball-duotone" class="block spin"></app-svg>
+                <div class="loading-content">
+                    <div class="ball">
+                        <app-svg name="basketball-duotone" class="block spin"></app-svg>
+                    </div>
+                    <div class="loading-text mt-10">
+                        <span class="message-text">{{currentMessage}}</span>
+                    </div>
                 </div>
             </div>
         }
