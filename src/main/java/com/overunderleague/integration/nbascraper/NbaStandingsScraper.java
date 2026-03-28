@@ -1,5 +1,6 @@
 package com.overunderleague.integration.nbascraper;
 
+import com.overunderleague.util.WebDriverFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.springframework.cache.annotation.Cacheable;

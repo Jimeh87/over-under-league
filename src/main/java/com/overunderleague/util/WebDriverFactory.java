@@ -1,4 +1,4 @@
-package com.overunderleague.integration.nbascraper;
+package com.overunderleague.util;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.slf4j.Slf4j;
@@ -15,16 +15,23 @@ public class WebDriverFactory {
 	private static final String USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
 	
 	public static WebDriver createChromeDriver() {
-		log.debug("Setting up ChromeDriver...");
-		
+		return createChromeDriver(false);
+	}
+
+	public static WebDriver createChromeDriver(boolean headless) {
+		log.debug("Setting up ChromeDriver (headless={})...", headless);
+
 		ChromeOptions options = new ChromeOptions();
-		
+		if (headless) {
+			options.addArguments("--headless=new");
+		}
+
 		String chromeBin = System.getenv("CHROME_BIN");
 		if (chromeBin != null && !chromeBin.isEmpty()) {
 			options.setBinary(chromeBin);
 			log.debug("Using Chrome binary from CHROME_BIN: {}", chromeBin);
 		}
-		
+
 		String chromedriverPath = System.getenv("CHROMEDRIVER_PATH");
 		if (chromedriverPath != null && !chromedriverPath.isEmpty()) {
 			System.setProperty("webdriver.chrome.driver", chromedriverPath);
@@ -33,10 +40,10 @@ public class WebDriverFactory {
 			WebDriverManager.chromedriver().setup();
 			log.debug("ChromeDriver setup complete via WebDriverManager");
 		}
-		
-		options.addArguments("--headless", "--disable-gpu", "--no-sandbox");
+
+		options.addArguments("--disable-gpu", "--no-sandbox");
 		options.addArguments("--user-agent=" + USER_AGENT);
-		
+
 		WebDriver driver = new ChromeDriver(options);
 		log.debug("ChromeDriver initialized");
 		

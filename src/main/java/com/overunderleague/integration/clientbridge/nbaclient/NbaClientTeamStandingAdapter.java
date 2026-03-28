@@ -1,5 +1,6 @@
 package com.overunderleague.integration.clientbridge.nbaclient;
 
+import com.overunderleague.core.overunder.Team;
 import com.overunderleague.integration.nbaclient.api.NbaTeamStandingDto;
 import com.overunderleague.core.standing.NbaTeamStanding;
 import lombok.AllArgsConstructor;
@@ -12,8 +13,8 @@ public class NbaClientTeamStandingAdapter implements NbaTeamStanding {
 	private final NbaTeamStandingDto nbaTeamStandingDto;
 
 	@Override
-	public String getNbaTeamId() {
-		return nbaTeamStandingDto.getTeamId();
+	public Team getTeam() {
+		return Team.getTeamByNbaTeamId(nbaTeamStandingDto.getTeamId());
 	}
 
 	@Override

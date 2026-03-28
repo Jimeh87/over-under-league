@@ -12,8 +12,8 @@ public class NbaClient2TeamStandingAdapter implements NbaTeamStanding {
 	private final Team team;
 
 	@Override
-	public String getNbaTeamId() {
-		return team.getProfile().getId();
+	public com.overunderleague.core.overunder.Team getTeam() {
+		return com.overunderleague.core.overunder.Team.getTeamByNbaTeamId(team.getProfile().getId());
 	}
 
 	@Override

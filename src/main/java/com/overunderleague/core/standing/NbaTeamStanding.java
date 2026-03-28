@@ -1,11 +1,13 @@
 package com.overunderleague.core.standing;
 
+import com.overunderleague.core.overunder.Team;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public interface NbaTeamStanding {
 
-	String getNbaTeamId();
+	Team getTeam();
 
 	int getWins();
 

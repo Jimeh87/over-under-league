@@ -3,7 +3,6 @@ package com.overunderleague.core.overunderpace;
 import com.overunderleague.controller.api.OverUnderTeamPaceDto;
 import com.overunderleague.core.overunder.OverUnderService;
 import com.overunderleague.core.overunder.OverUnderTeamDto;
-import com.overunderleague.core.overunder.Team;
 import com.overunderleague.core.standing.NbaStandingsService;
 import com.overunderleague.core.standing.NbaTeamStanding;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +24,8 @@ public class OverUnderTeamPaceService {
 	public List<OverUnderTeamPaceDto> list() {
 		return getTeamStandings()
 				.stream()
-				.filter(this::isNbaTeam)
-				.map(nbaTeamStandingDto -> toOverUnderTeamPaceDto(nbaTeamStandingDto, overUnderService.get(Team.getTeamByNbaTeamId(nbaTeamStandingDto.getNbaTeamId()))))
+				.map(nbaTeamStandingDto -> toOverUnderTeamPaceDto(nbaTeamStandingDto, overUnderService.get(nbaTeamStandingDto.getTeam())))
 				.collect(toList());
-	}
-
-	private boolean isNbaTeam(NbaTeamStanding nbaTeamStanding) {
-		// NBA api returns teams not in the NBA (probably just for preseason).
-		return Team.isNbaTeamIdExists(nbaTeamStanding.getNbaTeamId());
 	}
 
 	private List<NbaTeamStanding> getTeamStandings() {

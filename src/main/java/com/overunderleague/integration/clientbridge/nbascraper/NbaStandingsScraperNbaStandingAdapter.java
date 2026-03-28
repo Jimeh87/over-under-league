@@ -1,5 +1,6 @@
 package com.overunderleague.integration.clientbridge.nbascraper;
 
+import com.overunderleague.core.overunder.Team;
 import com.overunderleague.core.standing.NbaTeamStanding;
 import com.overunderleague.integration.nbascraper.NbaStandingsPage;
 import lombok.RequiredArgsConstructor;
@@ -10,8 +11,8 @@ public class NbaStandingsScraperNbaStandingAdapter implements NbaTeamStanding {
 	private final NbaStandingsPage.TeamStanding teamStanding;
 
 	@Override
-	public String getNbaTeamId() {
-		return teamStanding.id();
+	public Team getTeam() {
+		return Team.getTeamByNbaTeamId(teamStanding.id());
 	}
 
 	@Override

@@ -1,8 +1,8 @@
 package com.overunderleague.configuration;
 
 import com.overunderleague.core.standing.NbaStandingsProvider;
-import com.overunderleague.integration.nbascraper.NbaStandingsScraper;
-import com.overunderleague.integration.clientbridge.nbascraper.NbaStandingsScraperProvider;
+import com.overunderleague.integration.clientbridge.tsnscraper.TsnNbaStandingsScraperProvider;
+import com.overunderleague.integration.tsnscraper.TsnNbaStandingsScraper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,8 +10,8 @@ import org.springframework.context.annotation.Configuration;
 public class NbaStandingsProviderConfiguration {
 
 	@Bean
-	public NbaStandingsProvider nbaStandingsProvider(NbaStandingsScraper scraper) {
-		return new NbaStandingsScraperProvider(scraper);
+	public NbaStandingsProvider nbaStandingsProvider(TsnNbaStandingsScraper scraper) {
+		return new TsnNbaStandingsScraperProvider(scraper);
 	}
 
 }

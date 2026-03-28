@@ -15,7 +15,7 @@ public class CacheConfiguration {
 
 	@Bean
 	public CacheManager nbaStandingsCacheManager() {
-		CaffeineCacheManager cacheManager = new CaffeineCacheManager("nbaStandings");
+		CaffeineCacheManager cacheManager = new CaffeineCacheManager("nbaStandings", "tsnStandings");
 		cacheManager.setCaffeine(Caffeine.newBuilder()
 				.expireAfterWrite(60, TimeUnit.MINUTES));
 		return cacheManager;
