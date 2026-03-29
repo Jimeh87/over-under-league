@@ -44,6 +44,10 @@ public class WebDriverFactory {
 		options.addArguments("--disable-gpu", "--no-sandbox", "--disable-setuid-sandbox");
 		// Required in Docker: default /dev/shm is 64MB, Chrome crashes without this
 		options.addArguments("--disable-dev-shm-usage");
+		// Required under gVisor (DigitalOcean App Platform uses runsc):
+		// Chrome's zygote/renderer process forking is intercepted by gVisor as container
+		// creation, which fails. Running single-process prevents any forking.
+		options.addArguments("--single-process", "--no-zygote");
 		options.addArguments("--user-agent=" + USER_AGENT);
 
 		WebDriver driver = new ChromeDriver(options);
