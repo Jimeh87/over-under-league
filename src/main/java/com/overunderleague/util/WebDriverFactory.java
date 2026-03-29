@@ -41,7 +41,9 @@ public class WebDriverFactory {
 			log.debug("ChromeDriver setup complete via WebDriverManager");
 		}
 
-		options.addArguments("--disable-gpu", "--no-sandbox");
+		options.addArguments("--disable-gpu", "--no-sandbox", "--disable-setuid-sandbox");
+		// Required in Docker: default /dev/shm is 64MB, Chrome crashes without this
+		options.addArguments("--disable-dev-shm-usage");
 		options.addArguments("--user-agent=" + USER_AGENT);
 
 		WebDriver driver = new ChromeDriver(options);
